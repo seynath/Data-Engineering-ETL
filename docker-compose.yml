@@ -163,6 +163,7 @@ services:
       - "8088:8088"
     volumes:
       - superset-volume:/app/superset_home
+      - ./superset_config:/app/pythonpath
     command: >
       bash -c "
       superset db upgrade &&
