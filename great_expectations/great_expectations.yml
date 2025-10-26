@@ -10,11 +10,12 @@ datasources:
     data_connectors:
       default_inferred_data_connector:
         class_name: InferredAssetFilesystemDataConnector
-        base_directory: ../data/bronze/2025-10-24
+        base_directory: ../data/bronze/
         default_regex:
           group_names:
+            - run_date
             - data_asset_name
-          pattern: \d{4}-\d{2}-\d{2}_(.*)\.csv
+          pattern: (.*)\/\d{4}-\d{2}-\d{2}_(.*)\.csv
       
   silver_datasource:
     class_name: Datasource
@@ -23,11 +24,12 @@ datasources:
     data_connectors:
       default_inferred_data_connector:
         class_name: InferredAssetFilesystemDataConnector
-        base_directory: ../data/silver/2025-10-24
+        base_directory: ../data/silver/
         default_regex:
           group_names:
+            - run_date
             - data_asset_name
-          pattern: (.*)\.parquet
+          pattern: (.*)\/(.*)\.parquet
 
 # Stores configuration
 stores:
