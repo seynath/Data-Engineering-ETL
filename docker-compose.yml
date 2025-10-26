@@ -167,7 +167,7 @@ services:
       - ./superset_requirements.txt:/app/superset_requirements.txt
     command: >
       bash -c "
-      pip install -r /app/superset_requirements.txt &&
+      /app/.venv/bin/pip install -r /app/superset_requirements.txt &&
       superset db upgrade &&
       (superset fab create-admin --username admin --firstname Admin --lastname User --email admin@superset.com --password admin || true) &&
       superset init &&
