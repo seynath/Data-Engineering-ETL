@@ -415,8 +415,7 @@ with dag:
         """
         import pandas as pd
         import psycopg2
-        from pathlib import Path
-        from sqlalchemy import create_engine
+        from sqlalchemy import create_engine, text
         
         run_date = context['ds']
         
@@ -436,9 +435,8 @@ with dag:
         )
         
         # Create silver schema if it doesn't exist
-        with engine.connect() as conn:
-            conn.execute("CREATE SCHEMA IF NOT EXISTS silver")
-            conn.commit()
+        with engine.begin() as conn:
+            conn.execute(text("CREATE SCHEMA IF NOT EXISTS silver"))
         
         # Load Parquet files to warehouse
         silver_dir = Path(f"/opt/airflow/data/silver/{run_date}")
