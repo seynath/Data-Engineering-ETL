@@ -1,5 +1,7 @@
 # Healthcare ETL Pipeline
 
+> **🚀 New here? Start with [START_HERE.md](START_HERE.md) for the quickest path to getting running!**
+
 An automated ETL pipeline for hospital operational data using Apache Airflow, implementing the medallion architecture (Bronze/Silver/Gold) with data quality validation and analytics visualization.
 
 ## Project Structure

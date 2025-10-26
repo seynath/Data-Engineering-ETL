@@ -1,252 +1,258 @@
 # 🚀 START HERE - Healthcare ETL Pipeline
 
-## Quick Start (2 Commands)
+## Welcome!
 
-Open your **Terminal** and run:
+This is your complete Healthcare ETL Pipeline. Everything has been fixed and is ready to run.
 
-```bash
-cd /Users/seynaththenura/Downloads/Projects/ETL
-./start_services.sh
-```
-
-That's it! The script will:
-1. ✅ Check Docker is running
-2. ✅ Create required directories
-3. ✅ Start all services in the correct order
-4. ✅ Wait for services to be ready
-5. ✅ Display access URLs
-
-**Total time:** ~2 minutes
-
----
-
-## Access the Applications
-
-Once the script completes, open these URLs in your browser:
-
-### 🌐 Airflow (Pipeline Orchestration)
-- **URL:** http://localhost:8080
-- **Username:** `airflow`
-- **Password:** `airflow`
-
-### 📊 Superset (Dashboards)
-- **URL:** http://localhost:8088
-- **Username:** `admin`
-- **Password:** `admin`
-
----
-
-## Run Your First Pipeline
-
-### Step 1: Open Airflow
-Go to http://localhost:8080 and login
-
-### Step 2: Find the DAG
-Look for `healthcare_etl_pipeline` in the list
-
-### Step 3: Trigger the Pipeline
-1. Click the toggle to **unpause** the DAG (if it's paused)
-2. Click the **▶️ Play button** on the right
-3. Select **"Trigger DAG"**
-4. Click **"Trigger"** to confirm
-
-### Step 4: Watch it Run
-- Click on the DAG name to see the graph view
-- Watch tasks turn green as they complete
-- Click on any task to view logs
-
-**Expected runtime:** 10-15 minutes for full dataset
-
----
-
-## What the Pipeline Does
-
-1. **Bronze Layer** (1-2 min)
-   - Ingests 9 CSV files
-   - Creates metadata
-   - Stores raw data
-
-2. **Silver Layer** (2-3 min)
-   - Cleans and transforms data
-   - Converts to Parquet format
-   - Removes duplicates
-
-3. **Load to PostgreSQL** (1-2 min)
-   - Loads Silver data to warehouse
-
-4. **Gold Layer (dbt)** (3-5 min)
-   - Creates staging tables
-   - Builds dimension tables (patients, providers, etc.)
-   - Builds fact tables (encounters, claims, etc.)
-
-5. **Data Quality** (1-2 min)
-   - Runs validation checks
-   - Generates quality reports
-
----
-
-## View Results
-
-### Check Data in Database
+## ⚡ Quick Start (30 seconds)
 
 ```bash
-# Connect to warehouse
-docker-compose exec warehouse-db psql -U etl_user -d healthcare_warehouse
-
-# List tables
-\dt staging.*
-\dt dimensions.*
-\dt facts.*
-
-# Check row counts
-SELECT COUNT(*) FROM dimensions.dim_patient;
-SELECT COUNT(*) FROM facts.fact_encounter;
-
-# Exit
-\q
+./pipeline-cli.sh start
 ```
 
-### View Dashboards
+Wait ~30 seconds, then open:
+- **Airflow**: http://localhost:8080 (airflow/airflow)
+- **Superset**: http://localhost:8088 (admin/admin)
 
-1. Open http://localhost:8088
-2. Login with `admin` / `admin`
-3. Navigate to **Dashboards**
-4. Explore the analytics
+**That's it!** 🎉
 
----
+## 📚 Documentation Index
 
-## Common Commands
+Choose your path based on what you need:
+
+### 🆕 First Time User
+1. **[GETTING_STARTED.md](GETTING_STARTED.md)** ← Start here
+   - Complete walkthrough
+   - Three ways to run
+   - Verification steps
+   - Next steps
+
+### 📖 Reference & Guides
+2. **[QUICK_REFERENCE.md](QUICK_REFERENCE.md)** ← Command cheat sheet
+   - All commands at a glance
+   - Quick access URLs
+   - Emergency commands
+
+3. **[RUN_PIPELINE.md](RUN_PIPELINE.md)** ← Detailed instructions
+   - Manual step-by-step
+   - Environment variables
+   - Advanced configuration
+
+4. **[STARTUP_CHECKLIST.md](STARTUP_CHECKLIST.md)** ← Verification guide
+   - Pre-flight checks
+   - Step-by-step verification
+   - Success criteria
+
+### 🔧 Troubleshooting
+5. **[FIXED_ISSUES.md](FIXED_ISSUES.md)** ← What was fixed
+   - Problem explanation
+   - Solution details
+   - How to verify
+
+6. **[SOLUTION_SUMMARY.md](SOLUTION_SUMMARY.md)** ← Complete overview
+   - Everything that was done
+   - How to use the new tools
+   - Common operations
+
+### 📊 Project Documentation
+7. **[README.md](README.md)** ← Project overview
+   - Architecture
+   - Components
+   - Full documentation
+
+## 🛠️ Tools Available
+
+### Main CLI Tool
+```bash
+./pipeline-cli.sh [command]
+```
+
+**Essential Commands:**
+- `start` - Start everything
+- `stop` - Stop services
+- `status` - Check health
+- `logs` - View logs
+- `trigger-dag` - Run the pipeline
+- `troubleshoot` - Run diagnostics
+- `help` - See all commands
+
+### Other Scripts
+- `start.sh` - Automated startup (alternative to CLI)
+- `troubleshoot.sh` - Diagnostics tool
+- `setup.sh` - Initial setup (if needed)
+
+## 🎯 Common Tasks
+
+### Start the Pipeline
+```bash
+./pipeline-cli.sh start
+```
+
+### Check Everything is Running
+```bash
+./pipeline-cli.sh status
+```
+
+### Trigger an ETL Run
+```bash
+./pipeline-cli.sh trigger-dag
+```
+
+### View Logs
+```bash
+./pipeline-cli.sh logs
+```
+
+### Open Airflow UI
+```bash
+./pipeline-cli.sh airflow
+```
+
+### Troubleshoot Issues
+```bash
+./pipeline-cli.sh troubleshoot
+```
+
+### Stop Everything
+```bash
+./pipeline-cli.sh stop
+```
+
+## 🔍 What's Inside
+
+### Services
+- **Airflow** - Orchestrates the ETL pipeline
+- **PostgreSQL (Airflow)** - Airflow metadata
+- **PostgreSQL (Warehouse)** - Data warehouse
+- **Superset** - Analytics and dashboards
+- **Great Expectations** - Data quality validation
+- **dbt** - Data transformations (Gold layer)
+
+### Data Flow
+```
+Source CSV (dataset/)
+    ↓
+Bronze Layer (data/bronze/) - Raw ingestion
+    ↓
+Data Quality Validation
+    ↓
+Silver Layer (data/silver/) - Cleaned & transformed
+    ↓
+PostgreSQL Warehouse
+    ↓
+Gold Layer (dbt) - Dimensional models
+    ↓
+Superset Dashboards
+```
+
+## ✅ Verify It's Working
+
+### 1. Start
+```bash
+./pipeline-cli.sh start
+```
+
+### 2. Check Status (wait 30 seconds)
+```bash
+./pipeline-cli.sh status
+```
+
+All services should show "(healthy)"
+
+### 3. Open Airflow
+http://localhost:8080
+
+### 4. Trigger Pipeline
+Click "Trigger DAG" on `healthcare_etl_pipeline`
+
+### 5. Watch It Run
+Monitor in Graph or Grid view
+
+## 🆘 Need Help?
+
+### Quick Troubleshooting
+```bash
+# Run diagnostics
+./pipeline-cli.sh troubleshoot
+
+# Check logs
+./pipeline-cli.sh logs
+
+# Clean restart
+./pipeline-cli.sh clean  # Type 'yes'
+./pipeline-cli.sh start
+```
+
+### Documentation
+- Having issues? → `FIXED_ISSUES.md`
+- Need commands? → `QUICK_REFERENCE.md`
+- Want details? → `RUN_PIPELINE.md`
+- Step-by-step? → `STARTUP_CHECKLIST.md`
+
+## 🎓 Learning Path
+
+### Day 1: Get It Running
+1. Read this file (you're here!)
+2. Run `./pipeline-cli.sh start`
+3. Open Airflow UI
+4. Trigger the pipeline
+5. Watch it complete
+
+### Day 2: Understand the Flow
+1. Review `GETTING_STARTED.md`
+2. Explore the Airflow DAG structure
+3. Check the data in bronze/silver layers
+4. Query the warehouse database
+5. Review data quality reports
+
+### Day 3: Customize & Extend
+1. Read `RUN_PIPELINE.md` for details
+2. Modify configuration files
+3. Add custom transformations
+4. Create Superset dashboards
+5. Set up alerts
+
+## 📊 Access Information
+
+### Web UIs
+| Service | URL | Username | Password |
+|---------|-----|----------|----------|
+| Airflow | http://localhost:8080 | airflow | airflow |
+| Superset | http://localhost:8088 | admin | admin |
+
+### Databases
+| Database | Host | Port | Database | User | Password |
+|----------|------|------|----------|------|----------|
+| Airflow | localhost | 5432 | airflow | airflow | airflow |
+| Warehouse | localhost | 5433 | healthcare_warehouse | etl_user | etl_password |
+
+### Connect to Databases
+```bash
+# Warehouse
+./pipeline-cli.sh db-warehouse
+
+# Airflow
+./pipeline-cli.sh db-airflow
+```
+
+## 🎉 You're All Set!
+
+Everything is configured and ready. Just run:
 
 ```bash
-# Check service status
-docker-compose ps
-
-# View logs
-docker-compose logs -f airflow-webserver
-
-# Stop services (keeps data)
-docker-compose down
-
-# Stop and remove all data
-docker-compose down -v
-
-# Restart a service
-docker-compose restart airflow-webserver
-
-# Check service health
-./check_status.sh
+./pipeline-cli.sh start
 ```
+
+Then explore the documentation as needed. Happy data engineering! 🚀
 
 ---
 
-## Troubleshooting
+## 📋 Quick Links
 
-### Services Won't Start
+- [GETTING_STARTED.md](GETTING_STARTED.md) - Complete guide
+- [QUICK_REFERENCE.md](QUICK_REFERENCE.md) - Command reference
+- [RUN_PIPELINE.md](RUN_PIPELINE.md) - Detailed instructions
+- [SOLUTION_SUMMARY.md](SOLUTION_SUMMARY.md) - What was fixed
+- [README.md](README.md) - Project overview
 
-```bash
-# Stop everything
-docker-compose down
-
-# Start again
-./start_services.sh
-```
-
-### Can't Access Airflow
-
-1. Wait 2-3 minutes after starting
-2. Check logs: `docker-compose logs -f airflow-webserver`
-3. Restart: `docker-compose restart airflow-webserver`
-
-### Pipeline Fails
-
-1. Click on the failed task in Airflow UI
-2. Click "Log" to see error details
-3. Check if CSV files exist: `ls -la dataset/`
-
-### Need Fresh Start
-
-```bash
-# WARNING: Deletes all data!
-docker-compose down -v
-./start_services.sh
-```
-
----
-
-## File Structure
-
-```
-ETL/
-├── dataset/              # Source CSV files (9 files)
-├── data/
-│   ├── bronze/          # Raw ingested data
-│   └── silver/          # Cleaned Parquet files
-├── airflow/
-│   └── dags/            # Pipeline definitions
-├── dbt_project/
-│   └── models/          # dbt transformations
-├── logs/                # Application logs
-└── docker-compose.yml   # Service configuration
-```
-
----
-
-## Next Steps
-
-### 1. Explore Airflow
-- View DAG graph
-- Check task logs
-- Monitor execution history
-
-### 2. Query the Data
-- Connect to PostgreSQL
-- Run SQL queries
-- Explore dimension and fact tables
-
-### 3. Create Dashboards
-- Open Superset
-- Use SQL Lab
-- Build visualizations
-
-### 4. Customize the Pipeline
-- Edit `silver_transformation.py` for data transformations
-- Modify `dbt_project/models/` for Gold layer logic
-- Update `airflow/dags/healthcare_etl_dag.py` for scheduling
-
----
-
-## Getting Help
-
-1. **Check logs:** `docker-compose logs -f`
-2. **Check status:** `./check_status.sh`
-3. **Read docs:**
-   - `HOW_TO_RUN.md` - Quick instructions
-   - `STARTUP_GUIDE.md` - Detailed guide
-   - `README.md` - Full documentation
-
----
-
-## Summary
-
-**To start:**
-```bash
-./start_services.sh
-```
-
-**To access:**
-- Airflow: http://localhost:8080 (airflow/airflow)
-- Superset: http://localhost:8088 (admin/admin)
-
-**To run pipeline:**
-1. Open Airflow
-2. Trigger `healthcare_etl_pipeline` DAG
-3. Watch it execute
-
-**To stop:**
-```bash
-docker-compose down
-```
-
----
-
-🎉 **You're all set!** Run `./start_services.sh` to begin.
+**Questions?** Run `./pipeline-cli.sh help`
