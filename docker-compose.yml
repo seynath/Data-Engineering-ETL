@@ -164,9 +164,10 @@ services:
     volumes:
       - superset-volume:/app/superset_home
       - ./superset_config:/app/pythonpath
+      - ./superset_requirements.txt:/app/superset_requirements.txt
     command: >
       bash -c "
-      pip install psycopg2-binary &&
+      pip install -r /app/superset_requirements.txt &&
       superset db upgrade &&
       (superset fab create-admin --username admin --firstname Admin --lastname User --email admin@superset.com --password admin || true) &&
       superset init &&
