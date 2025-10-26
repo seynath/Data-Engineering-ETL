@@ -15,7 +15,7 @@ datasources:
           group_names:
             - data_asset_name
           pattern: \d{4}-\d{2}-\d{2}_(.*)\.csv
-      
+
   silver_datasource:
     class_name: Datasource
     execution_engine:
