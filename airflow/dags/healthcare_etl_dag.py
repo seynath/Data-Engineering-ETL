@@ -406,6 +406,84 @@ with dag:
     )
     
     # ============================================================================
+    # WAREHOUSE LOADING TASKS
+    # ============================================================================
+    
+    def load_silver_to_warehouse(**context):
+        """
+        Load Silver layer Parquet files to PostgreSQL warehouse
+        """
+        import pandas as pd
+        import psycopg2
+        from pathlib import Path
+        from sqlalchemy import create_engine
+        
+        run_date = context['ds']
+        
+        # Database connection parameters
+        conn_params = {
+            'host': os.getenv('POSTGRES_HOST', 'warehouse-db'),
+            'port': os.getenv('POSTGRES_PORT', '5432'),
+            'database': os.getenv('POSTGRES_DB', 'healthcare_warehouse'),
+            'user': os.getenv('POSTGRES_USER', 'etl_user'),
+            'password': os.getenv('POSTGRES_PASSWORD', 'etl_password')
+        }
+        
+        # Create SQLAlchemy engine
+        engine = create_engine(
+            f"postgresql://{conn_params['user']}:{conn_params['password']}@"
+            f"{conn_params['host']}:{conn_params['port']}/{conn_params['database']}"
+        )
+        
+        # Create silver schema if it doesn't exist
+        with engine.connect() as conn:
+            conn.execute("CREATE SCHEMA IF NOT EXISTS silver")
+            conn.commit()
+        
+        # Load Parquet files to warehouse
+        silver_dir = Path(f"/opt/airflow/data/silver/{run_date}")
+        
+        if not silver_dir.exists():
+            raise FileNotFoundError(f"Silver data directory not found: {silver_dir}")
+        
+        tables_loaded = 0
+        
+        for parquet_file in silver_dir.glob("*.parquet"):
+            table_name = parquet_file.stem
+            
+            try:
+                # Read Parquet file
+                df = pd.read_parquet(parquet_file)
+                
+                # Load to warehouse (replace existing data)
+                df.to_sql(
+                    table_name,
+                    engine,
+                    schema='silver',
+                    if_exists='replace',
+                    index=False,
+                    method='multi'
+                )
+                
+                print(f"✓ Loaded {table_name}: {len(df)} rows")
+                tables_loaded += 1
+                
+            except Exception as e:
+                print(f"✗ Failed to load {table_name}: {str(e)}")
+                raise
+        
+        print(f"Successfully loaded {tables_loaded} tables to warehouse")
+        return {'tables_loaded': tables_loaded, 'run_date': run_date}
+    
+    load_warehouse = PythonOperator(
+        task_id='load_to_warehouse',
+        python_callable=load_silver_to_warehouse,
+        provide_context=True,
+        execution_timeout=timedelta(minutes=30),  # Loading can take time
+        dag=dag
+    )
+    
+    # ============================================================================
     # DBT (GOLD LAYER) TASKS
     # ============================================================================
     
@@ -702,4 +780,4 @@ with dag:
     )
     
     # Set complete task dependencies
-    start >> validate_source >> ingest_bronze >> validate_bronze >> silver_group >> validate_silver >> dbt_group >> validate_gold >> generate_report >> refresh_superset >> end
+    start >> validate_source >> ingest_bronze >> validate_bronze >> silver_group >> validate_silver >> load_warehouse >> dbt_group >> validate_gold >> generate_report >> refresh_superset >> end

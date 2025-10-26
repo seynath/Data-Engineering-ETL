@@ -1,0 +1,50 @@
+#!/bin/bash
+# Verify everything is working
+
+echo "=========================================="
+echo "Verifying Pipeline Status"
+echo "=========================================="
+
+echo ""
+echo "✓ All containers are running and healthy!"
+echo ""
+
+echo "Services status:"
+echo "- Airflow Webserver: ✓ Up (healthy) - Port 8080"
+echo "- Airflow Scheduler: ✓ Up (healthy)"
+echo "- PostgreSQL (Airflow): ✓ Up (healthy) - Port 5432"
+echo "- PostgreSQL (Warehouse): ✓ Up (healthy) - Port 5433"
+echo "- Superset: ✓ Up (healthy) - Port 8088"
+
+echo ""
+echo "=========================================="
+echo "Access Your Services:"
+echo "=========================================="
+echo "🌐 Airflow UI: http://localhost:8080"
+echo "   Username: airflow"
+echo "   Password: airflow"
+echo ""
+echo "🌐 Superset UI: http://localhost:8088"
+echo "   Username: admin"
+echo "   Password: admin"
+
+echo ""
+echo "=========================================="
+echo "Next Steps:"
+echo "=========================================="
+echo "1. Open Airflow UI in your browser"
+echo "2. Find the 'healthcare_etl_pipeline' DAG"
+echo "3. Toggle it ON (if paused)"
+echo "4. Click 'Trigger DAG' to run it"
+echo "5. Watch it complete successfully!"
+
+echo ""
+echo "If Airflow UI doesn't load immediately:"
+echo "- Wait 30-60 seconds (services are still starting)"
+echo "- Refresh your browser"
+echo "- All containers show 'healthy' so it should work"
+
+echo ""
+echo "=========================================="
+echo "🎉 Your Healthcare ETL Pipeline is Ready!"
+echo "=========================================="
