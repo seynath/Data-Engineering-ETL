@@ -32,22 +32,41 @@ An automated ETL pipeline for hospital operational data using Apache Airflow, im
 
 ## Quick Start
 
-### Automated Setup (Recommended)
-
-The easiest way to get started is using the automated setup script:
+### 🚀 Fastest Way to Start
 
 ```bash
-# Run the setup script
-./setup.sh
+./pipeline-cli.sh start
 ```
 
-This script will:
-- Check prerequisites (Docker, Docker Compose)
-- Create `.env` file from template
-- Create required directories
-- Start all Docker services
-- Initialize the warehouse database
-- Populate the date dimension table
+That's it! The CLI tool handles everything automatically.
+
+**First time?** Read [`GETTING_STARTED.md`](GETTING_STARTED.md) for a complete walkthrough.
+
+### Alternative Methods
+
+#### Option 1: Use the CLI Helper (Recommended)
+```bash
+chmod +x pipeline-cli.sh
+./pipeline-cli.sh start
+./pipeline-cli.sh status
+./pipeline-cli.sh help  # See all commands
+```
+
+#### Option 2: Use the Start Script
+```bash
+chmod +x start.sh
+./start.sh
+```
+
+#### Option 3: Manual Docker Compose
+See [`RUN_PIPELINE.md`](RUN_PIPELINE.md) for detailed manual instructions.
+
+### 📚 Documentation Quick Links
+
+- **[GETTING_STARTED.md](GETTING_STARTED.md)** - Start here if you're new
+- **[QUICK_REFERENCE.md](QUICK_REFERENCE.md)** - Command cheat sheet
+- **[RUN_PIPELINE.md](RUN_PIPELINE.md)** - Detailed running instructions
+- **[FIXED_ISSUES.md](FIXED_ISSUES.md)** - Recent fixes and solutions
 
 **Setup time**: 3-5 minutes on first run
 
