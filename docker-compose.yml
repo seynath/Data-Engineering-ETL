@@ -153,6 +153,7 @@ services:
     environment:
       SUPERSET_SECRET_KEY: ${SUPERSET_SECRET_KEY:-superset_secret_key_change_me}
       SUPERSET_LOAD_EXAMPLES: 'no'
+      WTF_CSRF_ENABLED: 'false'
       DATABASE_HOST: warehouse-db
       DATABASE_PORT: 5432
       DATABASE_DB: ${POSTGRES_DB:-healthcare_warehouse}
