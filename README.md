@@ -69,6 +69,7 @@ See [`RUN_PIPELINE.md`](RUN_PIPELINE.md) for detailed manual instructions.
 - **[QUICK_REFERENCE.md](QUICK_REFERENCE.md)** - Command cheat sheet
 - **[RUN_PIPELINE.md](RUN_PIPELINE.md)** - Detailed running instructions
 - **[FIXED_ISSUES.md](FIXED_ISSUES.md)** - Recent fixes and solutions
+- **[PERMISSION_FIX_SUMMARY.md](PERMISSION_FIX_SUMMARY.md)** - Pip permission error fix
 
 **Setup time**: 3-5 minutes on first run
 

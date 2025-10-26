@@ -7,6 +7,7 @@ This is your complete Healthcare ETL Pipeline. Everything has been fixed and is 
 ## ⚡ Quick Start
 
 ### First Time Setup (3-5 minutes)
+
 ```bash
 ./fix-and-restart.sh
 ```
@@ -14,11 +15,13 @@ This is your complete Healthcare ETL Pipeline. Everything has been fixed and is 
 This builds a custom Airflow image with all dependencies properly installed.
 
 ### Subsequent Starts (30 seconds)
+
 ```bash
 ./pipeline-cli.sh start
 ```
 
 Wait ~30 seconds, then open:
+
 - **Airflow**: http://localhost:8080 (airflow/airflow)
 - **Superset**: http://localhost:8088 (admin/admin)
 
@@ -29,6 +32,7 @@ Wait ~30 seconds, then open:
 Choose your path based on what you need:
 
 ### 🆕 First Time User
+
 1. **[GETTING_STARTED.md](GETTING_STARTED.md)** ← Start here
    - Complete walkthrough
    - Three ways to run
@@ -36,12 +40,15 @@ Choose your path based on what you need:
    - Next steps
 
 ### 📖 Reference & Guides
+
 2. **[QUICK_REFERENCE.md](QUICK_REFERENCE.md)** ← Command cheat sheet
+
    - All commands at a glance
    - Quick access URLs
    - Emergency commands
 
 3. **[RUN_PIPELINE.md](RUN_PIPELINE.md)** ← Detailed instructions
+
    - Manual step-by-step
    - Environment variables
    - Advanced configuration
@@ -52,7 +59,9 @@ Choose your path based on what you need:
    - Success criteria
 
 ### 🔧 Troubleshooting
+
 5. **[FIXED_ISSUES.md](FIXED_ISSUES.md)** ← What was fixed
+
    - Problem explanation
    - Solution details
    - How to verify
@@ -63,6 +72,7 @@ Choose your path based on what you need:
    - Common operations
 
 ### 📊 Project Documentation
+
 7. **[README.md](README.md)** ← Project overview
    - Architecture
    - Components
@@ -71,11 +81,13 @@ Choose your path based on what you need:
 ## 🛠️ Tools Available
 
 ### Main CLI Tool
+
 ```bash
 ./pipeline-cli.sh [command]
 ```
 
 **Essential Commands:**
+
 - `start` - Start everything
 - `stop` - Stop services
 - `status` - Check health
@@ -85,6 +97,7 @@ Choose your path based on what you need:
 - `help` - See all commands
 
 ### Other Scripts
+
 - `start.sh` - Automated startup (alternative to CLI)
 - `troubleshoot.sh` - Diagnostics tool
 - `setup.sh` - Initial setup (if needed)
@@ -92,36 +105,43 @@ Choose your path based on what you need:
 ## 🎯 Common Tasks
 
 ### Start the Pipeline
+
 ```bash
 ./pipeline-cli.sh start
 ```
 
 ### Check Everything is Running
+
 ```bash
 ./pipeline-cli.sh status
 ```
 
 ### Trigger an ETL Run
+
 ```bash
 ./pipeline-cli.sh trigger-dag
 ```
 
 ### View Logs
+
 ```bash
 ./pipeline-cli.sh logs
 ```
 
 ### Open Airflow UI
+
 ```bash
 ./pipeline-cli.sh airflow
 ```
 
 ### Troubleshoot Issues
+
 ```bash
 ./pipeline-cli.sh troubleshoot
 ```
 
 ### Stop Everything
+
 ```bash
 ./pipeline-cli.sh stop
 ```
@@ -129,6 +149,7 @@ Choose your path based on what you need:
 ## 🔍 What's Inside
 
 ### Services
+
 - **Airflow** - Orchestrates the ETL pipeline
 - **PostgreSQL (Airflow)** - Airflow metadata
 - **PostgreSQL (Warehouse)** - Data warehouse
@@ -137,6 +158,7 @@ Choose your path based on what you need:
 - **dbt** - Data transformations (Gold layer)
 
 ### Data Flow
+
 ```
 Source CSV (dataset/)
     ↓
@@ -156,11 +178,13 @@ Superset Dashboards
 ## ✅ Verify It's Working
 
 ### 1. Start
+
 ```bash
 ./pipeline-cli.sh start
 ```
 
 ### 2. Check Status (wait 30 seconds)
+
 ```bash
 ./pipeline-cli.sh status
 ```
@@ -168,17 +192,21 @@ Superset Dashboards
 All services should show "(healthy)"
 
 ### 3. Open Airflow
+
 http://localhost:8080
 
 ### 4. Trigger Pipeline
+
 Click "Trigger DAG" on `healthcare_etl_pipeline`
 
 ### 5. Watch It Run
+
 Monitor in Graph or Grid view
 
 ## 🆘 Need Help?
 
 ### Quick Troubleshooting
+
 ```bash
 # Run diagnostics
 ./pipeline-cli.sh troubleshoot
@@ -192,6 +220,7 @@ Monitor in Graph or Grid view
 ```
 
 ### Documentation
+
 - Having issues? → `FIXED_ISSUES.md`
 - Need commands? → `QUICK_REFERENCE.md`
 - Want details? → `RUN_PIPELINE.md`
@@ -200,6 +229,7 @@ Monitor in Graph or Grid view
 ## 🎓 Learning Path
 
 ### Day 1: Get It Running
+
 1. Read this file (you're here!)
 2. Run `./pipeline-cli.sh start`
 3. Open Airflow UI
@@ -207,6 +237,7 @@ Monitor in Graph or Grid view
 5. Watch it complete
 
 ### Day 2: Understand the Flow
+
 1. Review `GETTING_STARTED.md`
 2. Explore the Airflow DAG structure
 3. Check the data in bronze/silver layers
@@ -214,6 +245,7 @@ Monitor in Graph or Grid view
 5. Review data quality reports
 
 ### Day 3: Customize & Extend
+
 1. Read `RUN_PIPELINE.md` for details
 2. Modify configuration files
 3. Add custom transformations
@@ -223,18 +255,21 @@ Monitor in Graph or Grid view
 ## 📊 Access Information
 
 ### Web UIs
-| Service | URL | Username | Password |
-|---------|-----|----------|----------|
-| Airflow | http://localhost:8080 | airflow | airflow |
-| Superset | http://localhost:8088 | admin | admin |
+
+| Service  | URL                   | Username | Password |
+| -------- | --------------------- | -------- | -------- |
+| Airflow  | http://localhost:8080 | airflow  | airflow  |
+| Superset | http://localhost:8088 | admin    | admin    |
 
 ### Databases
-| Database | Host | Port | Database | User | Password |
-|----------|------|------|----------|------|----------|
-| Airflow | localhost | 5432 | airflow | airflow | airflow |
+
+| Database  | Host      | Port | Database             | User     | Password     |
+| --------- | --------- | ---- | -------------------- | -------- | ------------ |
+| Airflow   | localhost | 5432 | airflow              | airflow  | airflow      |
 | Warehouse | localhost | 5433 | healthcare_warehouse | etl_user | etl_password |
 
 ### Connect to Databases
+
 ```bash
 # Warehouse
 ./pipeline-cli.sh db-warehouse

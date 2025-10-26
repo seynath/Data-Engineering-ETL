@@ -7,6 +7,12 @@ echo "=========================================="
 echo "Healthcare ETL Pipeline Startup"
 echo "=========================================="
 
+# Step 0: Ensure directories exist with proper permissions
+echo ""
+echo "Step 0: Setting up directories..."
+mkdir -p data/bronze data/silver airflow/logs airflow/dags airflow/plugins dataset config
+chmod -R 777 data/ airflow/logs/ 2>/dev/null || sudo chmod -R 777 data/ airflow/logs/
+
 # Step 1: Clean up any existing containers
 echo ""
 echo "Step 1: Cleaning up existing containers..."

@@ -10,16 +10,21 @@ echo "Step 1: Stopping all containers..."
 docker-compose down -v
 
 echo ""
-echo "Step 2: Removing old Airflow images..."
+echo "Step 2: Creating and fixing data directories..."
+mkdir -p data/bronze data/silver airflow/logs airflow/dags airflow/plugins
+chmod -R 777 data/ airflow/logs/ 2>/dev/null || sudo chmod -R 777 data/ airflow/logs/
+
+echo ""
+echo "Step 3: Removing old Airflow images..."
 docker rmi healthcare-etl-airflow:latest 2>/dev/null || echo "No old image to remove"
 
 echo ""
-echo "Step 3: Building new custom Airflow image..."
+echo "Step 4: Building new custom Airflow image..."
 echo "This may take 2-3 minutes on first build..."
 docker-compose build
 
 echo ""
-echo "Step 4: Starting services with new image..."
+echo "Step 5: Starting services with new image..."
 ./start.sh
 
 echo ""

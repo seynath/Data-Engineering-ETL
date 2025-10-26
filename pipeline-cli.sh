@@ -4,6 +4,11 @@
 COMMAND=$1
 
 case $COMMAND in
+  fix-permissions)
+    echo "Fixing directory permissions..."
+    ./fix-permissions.sh
+    ;;
+    
   build)
     echo "Building custom Airflow image..."
     docker-compose build
@@ -91,6 +96,7 @@ case $COMMAND in
     echo "Usage: ./pipeline-cli.sh [command]"
     echo ""
     echo "Commands:"
+    echo "  fix-permissions - Fix directory permissions"
     echo "  build           - Build custom Airflow image"
     echo "  start           - Start all services"
     echo "  stop            - Stop all services (keep data)"

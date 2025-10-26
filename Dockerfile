@@ -7,6 +7,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# Create data directories with proper permissions
+RUN mkdir -p /opt/airflow/data/bronze /opt/airflow/data/silver \
+    && chown -R airflow:0 /opt/airflow/data \
+    && chmod -R 775 /opt/airflow/data
+
 USER airflow
 
 # Copy requirements file
