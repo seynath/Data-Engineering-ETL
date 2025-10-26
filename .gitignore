@@ -12,7 +12,6 @@ dist/
 build/
 
 # Environment
-.env
 
 # Data directories
 data/bronze/*
