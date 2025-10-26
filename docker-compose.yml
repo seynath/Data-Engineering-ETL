@@ -166,6 +166,7 @@ services:
       - ./superset_config:/app/pythonpath
     command: >
       bash -c "
+      pip install psycopg2-binary &&
       superset db upgrade &&
       (superset fab create-admin --username admin --firstname Admin --lastname User --email admin@superset.com --password admin || true) &&
       superset init &&
