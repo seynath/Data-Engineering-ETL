@@ -12,31 +12,36 @@ echo ""
 echo "Step 1: Cleaning up existing containers..."
 docker-compose down -v 2>/dev/null || true
 
-# Step 2: Start database services first
+# Step 2: Build custom Airflow image
 echo ""
-echo "Step 2: Starting database services..."
+echo "Step 2: Building custom Airflow image..."
+docker-compose build airflow-webserver
+
+# Step 3: Start database services first
+echo ""
+echo "Step 3: Starting database services..."
 docker-compose up -d postgres warehouse-db
 
 # Wait for databases to be healthy
 echo "Waiting for databases to be ready..."
 sleep 15
 
-# Step 3: Initialize Airflow
+# Step 4: Initialize Airflow
 echo ""
-echo "Step 3: Initializing Airflow..."
+echo "Step 4: Initializing Airflow..."
 docker-compose run --rm airflow-init
 
-# Step 4: Start all services
+# Step 5: Start all services
 echo ""
-echo "Step 4: Starting all services..."
+echo "Step 5: Starting all services..."
 docker-compose up -d
 
-# Step 5: Wait for services to be healthy
+# Step 6: Wait for services to be healthy
 echo ""
-echo "Step 5: Waiting for services to start..."
+echo "Step 6: Waiting for services to start..."
 sleep 30
 
-# Step 6: Show status
+# Step 7: Show status
 echo ""
 echo "=========================================="
 echo "Service Status:"

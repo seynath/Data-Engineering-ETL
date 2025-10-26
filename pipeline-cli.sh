@@ -4,6 +4,12 @@
 COMMAND=$1
 
 case $COMMAND in
+  build)
+    echo "Building custom Airflow image..."
+    docker-compose build
+    echo "Build complete!"
+    ;;
+    
   start)
     echo "Starting Healthcare ETL Pipeline..."
     ./start.sh
@@ -85,6 +91,7 @@ case $COMMAND in
     echo "Usage: ./pipeline-cli.sh [command]"
     echo ""
     echo "Commands:"
+    echo "  build           - Build custom Airflow image"
     echo "  start           - Start all services"
     echo "  stop            - Stop all services (keep data)"
     echo "  restart         - Restart all services"

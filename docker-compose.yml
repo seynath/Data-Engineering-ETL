@@ -2,7 +2,10 @@ version: '3.8'
 
 x-airflow-common:
   &airflow-common
-  image: apache/airflow:2.8.1-python3.11
+  build:
+    context: .
+    dockerfile: Dockerfile
+  image: healthcare-etl-airflow:latest
   environment:
     &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
@@ -12,7 +15,6 @@ x-airflow-common:
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session'
     AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
-    _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-pandas==2.1.4 pyarrow==14.0.1 great-expectations==0.18.8 psycopg2-binary==2.9.9 pyyaml==6.0.1 dbt-core==1.7.4 dbt-postgres==1.7.4}
     POSTGRES_HOST: ${POSTGRES_HOST:-warehouse-db}
     POSTGRES_PORT: ${POSTGRES_PORT:-5432}
     POSTGRES_DB: ${POSTGRES_DB:-healthcare_warehouse}

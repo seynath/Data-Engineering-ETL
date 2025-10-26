@@ -4,8 +4,16 @@
 
 This is your complete Healthcare ETL Pipeline. Everything has been fixed and is ready to run.
 
-## ⚡ Quick Start (30 seconds)
+## ⚡ Quick Start
 
+### First Time Setup (3-5 minutes)
+```bash
+./fix-and-restart.sh
+```
+
+This builds a custom Airflow image with all dependencies properly installed.
+
+### Subsequent Starts (30 seconds)
 ```bash
 ./pipeline-cli.sh start
 ```
