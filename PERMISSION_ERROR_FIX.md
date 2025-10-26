@@ -42,8 +42,8 @@ Or open Airflow UI: http://localhost:8080
 Run this to fix permissions manually:
 
 ```bash
-sudo chmod -R 777 data/ airflow/logs/ logs/
-sudo chown -R 50000:0 data/ airflow/logs/ logs/
+sudo chmod -R 777 data/ airflow/logs/ logs/ great_expectations/
+sudo chown -R 50000:0 data/ airflow/logs/ logs/ great_expectations/
 ```
 
 Then restart:

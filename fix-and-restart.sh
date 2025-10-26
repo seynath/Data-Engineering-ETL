@@ -10,9 +10,16 @@ echo "Step 1: Stopping all containers..."
 docker-compose down -v
 
 echo ""
-echo "Step 2: Creating and fixing data directories..."
-mkdir -p data/bronze data/silver airflow/logs airflow/dags airflow/plugins
-chmod -R 777 data/ airflow/logs/ 2>/dev/null || sudo chmod -R 777 data/ airflow/logs/
+echo "Step 2: Creating and fixing all directories..."
+mkdir -p data/bronze data/silver \
+         airflow/logs airflow/dags airflow/plugins \
+         dataset config \
+         logs logs/alerts \
+         great_expectations/uncommitted/validations \
+         great_expectations/uncommitted/data_docs \
+         dbt_project
+chmod -R 777 data/ airflow/logs/ logs/ great_expectations/ config/ dbt_project/ 2>/dev/null || \
+    sudo chmod -R 777 data/ airflow/logs/ logs/ great_expectations/ config/ dbt_project/
 
 echo ""
 echo "Step 3: Removing old Airflow images..."

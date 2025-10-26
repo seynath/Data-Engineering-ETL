@@ -4,6 +4,16 @@
 COMMAND=$1
 
 case $COMMAND in
+  verify)
+    echo "Verifying permissions..."
+    ./verify-permissions.sh
+    ;;
+    
+  quick-fix)
+    echo "Quick permission fix..."
+    ./quick-permission-fix.sh
+    ;;
+    
   fix-permissions)
     echo "Fixing directory permissions..."
     ./fix-permissions.sh
@@ -96,6 +106,8 @@ case $COMMAND in
     echo "Usage: ./pipeline-cli.sh [command]"
     echo ""
     echo "Commands:"
+    echo "  verify          - Verify directory permissions"
+    echo "  quick-fix       - Quick permission fix (no rebuild)"
     echo "  fix-permissions - Fix directory permissions"
     echo "  build           - Build custom Airflow image"
     echo "  start           - Start all services"

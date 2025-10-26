@@ -7,10 +7,28 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Create data directories with proper permissions
-RUN mkdir -p /opt/airflow/data/bronze /opt/airflow/data/silver \
+# Create all required directories with proper permissions
+RUN mkdir -p /opt/airflow/data/bronze \
+             /opt/airflow/data/silver \
+             /opt/airflow/logs \
+             /opt/airflow/logs_app \
+             /opt/airflow/logs_app/alerts \
+             /opt/airflow/great_expectations/uncommitted/validations \
+             /opt/airflow/great_expectations/uncommitted/data_docs \
+             /opt/airflow/config \
+             /opt/airflow/dbt_project \
     && chown -R airflow:0 /opt/airflow/data \
-    && chmod -R 775 /opt/airflow/data
+                          /opt/airflow/logs \
+                          /opt/airflow/logs_app \
+                          /opt/airflow/great_expectations \
+                          /opt/airflow/config \
+                          /opt/airflow/dbt_project \
+    && chmod -R 775 /opt/airflow/data \
+                    /opt/airflow/logs \
+                    /opt/airflow/logs_app \
+                    /opt/airflow/great_expectations \
+                    /opt/airflow/config \
+                    /opt/airflow/dbt_project
 
 USER airflow
 

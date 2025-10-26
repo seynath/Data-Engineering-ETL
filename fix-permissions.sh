@@ -3,18 +3,31 @@
 
 echo "Fixing directory permissions..."
 
-# Create directories if they don't exist
-mkdir -p data/bronze data/silver airflow/logs airflow/dags airflow/plugins dataset config logs
+# Create all directories if they don't exist
+echo "Creating directories..."
+mkdir -p data/bronze data/silver \
+         airflow/logs airflow/dags airflow/plugins \
+         dataset config \
+         logs logs/alerts \
+         great_expectations/uncommitted/validations \
+         great_expectations/uncommitted/data_docs \
+         dbt_project
 
-# Fix permissions
-echo "Setting permissions on data directories..."
-chmod -R 777 data/ 2>/dev/null || sudo chmod -R 777 data/
+# Fix permissions on all writable directories
+echo "Setting permissions on all directories..."
+DIRS_TO_FIX="data/ airflow/logs/ logs/ great_expectations/ config/ dbt_project/"
 
-echo "Setting permissions on airflow directories..."
-chmod -R 777 airflow/logs/ 2>/dev/null || sudo chmod -R 777 airflow/logs/
+if chmod -R 777 $DIRS_TO_FIX 2>/dev/null; then
+    echo "✓ Permissions fixed without sudo"
+else
+    echo "Need sudo for permissions..."
+    sudo chmod -R 777 $DIRS_TO_FIX
+    echo "✓ Permissions fixed with sudo"
+fi
 
-echo "Setting permissions on logs directory..."
-chmod -R 777 logs/ 2>/dev/null || sudo chmod -R 777 logs/
+# Ensure dataset is readable
+echo "Setting read permissions on dataset..."
+chmod -R 755 dataset/ 2>/dev/null || sudo chmod -R 755 dataset/
 
 echo ""
 echo "Permissions fixed!"

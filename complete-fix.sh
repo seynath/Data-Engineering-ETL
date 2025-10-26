@@ -25,21 +25,33 @@ export AIRFLOW_UID=50000
 echo "AIRFLOW_UID set to 50000"
 
 echo ""
-echo "Step 2: Creating directories..."
-mkdir -p data/bronze data/silver airflow/logs airflow/dags airflow/plugins dataset config logs
+echo "Step 2: Creating all required directories..."
+mkdir -p data/bronze data/silver \
+         airflow/logs airflow/dags airflow/plugins \
+         dataset config \
+         logs logs/alerts \
+         great_expectations/uncommitted/validations \
+         great_expectations/uncommitted/data_docs \
+         dbt_project
 
 echo ""
-echo "Step 3: Fixing permissions..."
+echo "Step 3: Fixing permissions on all directories..."
 echo "Attempting to fix permissions (may require sudo)..."
 
+# List of directories that need write permissions
+DIRS_TO_FIX="data/ airflow/logs/ logs/ great_expectations/ config/ dbt_project/"
+
 # Try without sudo first
-if chmod -R 777 data/ airflow/logs/ logs/ 2>/dev/null; then
+if chmod -R 777 $DIRS_TO_FIX 2>/dev/null; then
     echo "✓ Permissions fixed"
 else
     echo "Need sudo for permissions..."
-    sudo chmod -R 777 data/ airflow/logs/ logs/
+    sudo chmod -R 777 $DIRS_TO_FIX
     echo "✓ Permissions fixed with sudo"
 fi
+
+# Also ensure dataset directory is readable
+chmod -R 755 dataset/ 2>/dev/null || sudo chmod -R 755 dataset/
 
 echo ""
 echo "Step 4: Stopping existing containers..."

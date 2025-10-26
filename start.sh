@@ -10,8 +10,15 @@ echo "=========================================="
 # Step 0: Ensure directories exist with proper permissions
 echo ""
 echo "Step 0: Setting up directories..."
-mkdir -p data/bronze data/silver airflow/logs airflow/dags airflow/plugins dataset config
-chmod -R 777 data/ airflow/logs/ 2>/dev/null || sudo chmod -R 777 data/ airflow/logs/
+mkdir -p data/bronze data/silver \
+         airflow/logs airflow/dags airflow/plugins \
+         dataset config \
+         logs logs/alerts \
+         great_expectations/uncommitted/validations \
+         great_expectations/uncommitted/data_docs \
+         dbt_project
+chmod -R 777 data/ airflow/logs/ logs/ great_expectations/ config/ dbt_project/ 2>/dev/null || \
+    sudo chmod -R 777 data/ airflow/logs/ logs/ great_expectations/ config/ dbt_project/
 
 # Step 1: Clean up any existing containers
 echo ""
