@@ -1,0 +1,223 @@
+version: 2
+
+sources:
+  - name: silver
+    description: "Silver layer data from Parquet files - cleaned and validated"
+    meta:
+      owner: "data-engineering"
+    
+    # Note: dbt doesn't natively read Parquet files directly
+    # These sources will be loaded via external tables or Python scripts
+    # For this implementation, we'll use external tables created by the ETL pipeline
+    
+    tables:
+      - name: patients
+        description: "Patient demographic and insurance information"
+        freshness:
+          warn_after: {count: 24, period: hour}
+          error_after: {count: 48, period: hour}
+        loaded_at_field: load_timestamp
+        columns:
+          - name: patient_id
+            description: "Unique patient identifier"
+            tests:
+              - unique
+              - not_null
+          - name: first_name
+          - name: last_name
+          - name: dob
+          - name: age
+          - name: gender
+          - name: ethnicity
+          - name: insurance_type
+          - name: marital_status
+          - name: city
+          - name: state
+          - name: zip
+          - name: phone
+          - name: email
+          - name: load_timestamp
+          - name: source_file
+          - name: record_hash
+      
+      - name: encounters
+        description: "Patient encounters and visits"
+        freshness:
+          warn_after: {count: 24, period: hour}
+          error_after: {count: 48, period: hour}
+        loaded_at_field: load_timestamp
+        columns:
+          - name: encounter_id
+            tests:
+              - unique
+              - not_null
+          - name: patient_id
+            tests:
+              - not_null
+          - name: provider_id
+          - name: visit_type
+          - name: department
+          - name: visit_date
+          - name: discharge_date
+          - name: admission_type
+          - name: length_of_stay
+          - name: status
+          - name: readmitted_flag
+          - name: load_timestamp
+          - name: source_file
+          - name: record_hash
+      
+      - name: diagnoses
+        description: "Diagnosis codes and descriptions"
+        columns:
+          - name: diagnosis_id
+            tests:
+              - unique
+              - not_null
+          - name: encounter_id
+            tests:
+              - not_null
+          - name: diagnosis_code
+            tests:
+              - not_null
+          - name: diagnosis_description
+          - name: primary_flag
+          - name: chronic_flag
+          - name: load_timestamp
+          - name: source_file
+          - name: record_hash
+      
+      - name: procedures
+        description: "Medical procedure codes and descriptions"
+        columns:
+          - name: procedure_code
+            tests:
+              - unique
+              - not_null
+          - name: procedure_description
+          - name: load_timestamp
+          - name: source_file
+          - name: record_hash
+      
+      - name: medications
+        description: "Medication prescriptions"
+        freshness:
+          warn_after: {count: 24, period: hour}
+          error_after: {count: 48, period: hour}
+        loaded_at_field: load_timestamp
+        columns:
+          - name: medication_id
+            tests:
+              - unique
+              - not_null
+          - name: encounter_id
+            tests:
+              - not_null
+          - name: drug_name
+          - name: dosage
+          - name: route
+          - name: frequency
+          - name: prescribed_date
+          - name: duration
+          - name: prescriber_id
+          - name: cost
+          - name: load_timestamp
+          - name: source_file
+          - name: record_hash
+      
+      - name: lab_tests
+        description: "Laboratory test results"
+        freshness:
+          warn_after: {count: 24, period: hour}
+          error_after: {count: 48, period: hour}
+        loaded_at_field: load_timestamp
+        columns:
+          - name: lab_id
+            tests:
+              - unique
+              - not_null
+          - name: encounter_id
+            tests:
+              - not_null
+          - name: test_name
+          - name: test_code
+          - name: test_date
+          - name: specimen_type
+          - name: test_result
+          - name: status
+          - name: load_timestamp
+          - name: source_file
+          - name: record_hash
+      
+      - name: claims_and_billing
+        description: "Claims and billing information"
+        freshness:
+          warn_after: {count: 24, period: hour}
+          error_after: {count: 48, period: hour}
+        loaded_at_field: load_timestamp
+        columns:
+          - name: billing_id
+            tests:
+              - unique
+              - not_null
+          - name: patient_id
+            tests:
+              - not_null
+          - name: encounter_id
+            tests:
+              - not_null
+          - name: insurance_provider
+          - name: payment_method
+          - name: claim_id
+          - name: claim_billing_date
+          - name: billed_amount
+          - name: paid_amount
+          - name: claim_status
+          - name: denial_reason
+          - name: load_timestamp
+          - name: source_file
+          - name: record_hash
+      
+      - name: providers
+        description: "Healthcare provider information"
+        columns:
+          - name: provider_id
+            tests:
+              - unique
+              - not_null
+          - name: name
+          - name: department
+          - name: specialty
+          - name: npi
+          - name: inhouse
+          - name: location
+          - name: years_experience
+          - name: load_timestamp
+          - name: source_file
+          - name: record_hash
+      
+      - name: denials
+        description: "Claim denials and appeals"
+        freshness:
+          warn_after: {count: 24, period: hour}
+          error_after: {count: 48, period: hour}
+        loaded_at_field: load_timestamp
+        columns:
+          - name: denial_id
+            tests:
+              - unique
+              - not_null
+          - name: claim_id
+            tests:
+              - not_null
+          - name: denial_date
+          - name: denial_reason_code
+          - name: denial_reason_description
+          - name: denied_amount
+          - name: appeal_filed
+          - name: appeal_status
+          - name: appeal_resolution_date
+          - name: final_outcome
+          - name: load_timestamp
+          - name: source_file
+          - name: record_hash

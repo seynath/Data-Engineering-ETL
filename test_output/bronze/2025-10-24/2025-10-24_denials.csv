@@ -1,0 +1,102 @@
+claim_id,denial_id,denial_reason_code,denial_reason_description,denied_amount,denial_date,appeal_filed,appeal_status,appeal_resolution_date,final_outcome
+CLM000001,DEN00001,CO119,Claim billed to wrong payer.,1971.52,01-03-2025,Yes,Approved,10-03-2025,Paid
+CLM000009,DEN00010,PR109,Claim not covered by this payer/contractor.,912.98,02-04-2025,No,,,
+CLM000021,DEN00024,CO18,Duplicate claim/service.,2078.53,30-03-2025,Yes,Approved,04-04-2025,Paid
+CLM000032,DEN00035,CO50,These services are not medically necessary.,2242.83,29-04-2025,No,,,
+CLM000044,DEN00052,PR109,Claim not covered by this payer/contractor.,1157.46,16-05-2025,Yes,Approved,23-05-2025,Paid
+CLM000072,DEN00086,CO18,Duplicate claim/service.,561.62,16-03-2025,Yes,Approved,22-03-2025,Paid
+CLM000099,DEN00116,PR27,Coverage terminated prior to DOS or patient not eligible.,1456.65,12-04-2025,Yes,Approved,18-04-2025,Paid
+CLM000103,DEN00121,CO197,Precertification/authorization/notification absent.,1510.61,23-02-2025,Yes,Approved,02-03-2025,Paid
+CLM000105,DEN00123,CO22,This care may be covered by another payer per coordination of benefits.,493.49,27-02-2025,No,,,
+CLM000129,DEN00149,CO22,This care may be covered by another payer per coordination of benefits.,249.71,24-03-2025,Yes,Denied,02-04-2025,Written off
+CLM000143,DEN00164,CO197,Precertification/authorization/notification absent.,1329.63,18-03-2025,No,,,
+CLM000161,DEN00188,CO11,Diagnosis inconsistent with procedure.,3057.64,06-03-2025,Yes,Approved,16-03-2025,Paid
+CLM000168,DEN00195,CO58,Treatment was rendered in an invalid or inappropriate place of service.,614.34,26-04-2025,Yes,Denied,04-05-2025,Written off
+CLM000172,DEN00201,PR27,Coverage terminated prior to DOS or patient not eligible.,2003.86,25-04-2025,Yes,Approved,01-05-2025,Paid
+CLM000176,DEN00205,PR109,Claim not covered by this payer/contractor.,1303.53,03-05-2025,No,,,
+CLM000182,DEN00212,CO50,These services are not medically necessary.,4125.99,13-03-2025,Yes,Pending,18-03-2025,Reprocessed
+CLM000190,DEN00220,CO50,These services are not medically necessary.,696.3,06-05-2025,Yes,Approved,14-05-2025,Paid
+CLM000191,DEN00223,CO11,Diagnosis inconsistent with procedure.,349.01,08-05-2025,Yes,Pending,16-05-2025,Reprocessed
+CLM000195,DEN00228,CO58,Treatment was rendered in an invalid or inappropriate place of service.,1318.69,06-05-2025,Yes,Approved,12-05-2025,Paid
+CLM000232,DEN00272,CO22,This care may be covered by another payer per coordination of benefits.,244.04,25-04-2025,Yes,Approved,04-05-2025,Paid
+CLM000241,DEN00282,PR109,Claim not covered by this payer/contractor.,2498.77,07-05-2025,Yes,Approved,12-05-2025,Paid
+CLM000245,DEN00286,PR96,Non-covered charges,608.66,29-03-2025,No,,,
+CLM000258,DEN00304,CO197,Precertification/authorization/notification absent.,359.16,17-04-2025,Yes,Approved,24-04-2025,Paid
+CLM000279,DEN00328,CO22,This care may be covered by another payer per coordination of benefits.,412.63,16-04-2025,Yes,Pending,26-04-2025,Reprocessed
+CLM000285,DEN00336,PR125,Submission/billing error patient has no coverage with this plan.,1197.32,30-04-2025,Yes,Approved,07-05-2025,Paid
+CLM000287,DEN00338,CO29,Claim denied because it was filed after the timely filing deadline.,2702.55,01-03-2025,No,,,
+CLM000303,DEN00355,CO29,Claim denied because it was filed after the timely filing deadline.,1512.38,08-03-2025,Yes,Approved,14-03-2025,Paid
+CLM000314,DEN00366,PR27,Coverage terminated prior to DOS or patient not eligible.,2132.75,12-03-2025,Yes,Approved,19-03-2025,Paid
+CLM000321,DEN00375,CO22,This care may be covered by another payer per coordination of benefits.,692.0,16-04-2025,Yes,Approved,24-04-2025,Paid
+CLM000329,DEN00385,CO29,Claim denied because it was filed after the timely filing deadline.,1014.79,25-04-2025,No,,,
+CLM000337,DEN00393,PR125,Submission/billing error patient has no coverage with this plan.,745.81,20-03-2025,Yes,Approved,28-03-2025,Paid
+CLM000342,DEN00399,CO16,Claim/service lacks information or has submission/billing error.,940.34,29-03-2025,Yes,Pending,04-04-2025,Reprocessed
+CLM000351,DEN00409,CO16,Claim/service lacks information or has submission/billing error.,824.88,08-03-2025,Yes,Approved,16-03-2025,Paid
+CLM000353,DEN00411,CO50,These services are not medically necessary.,1935.95,18-04-2025,Yes,Approved,23-04-2025,Paid
+CLM000365,DEN00426,CO29,Claim denied because it was filed after the timely filing deadline.,5265.91,28-04-2025,Yes,Approved,05-05-2025,Paid
+CLM000381,DEN00444,CO16,Claim/service lacks information or has submission/billing error.,1103.01,14-05-2025,Yes,Approved,20-05-2025,Paid
+CLM000384,DEN00447,CO50,These services are not medically necessary.,1222.62,05-05-2025,Yes,Approved,10-05-2025,Paid
+CLM000388,DEN00452,CO22,This care may be covered by another payer per coordination of benefits.,3084.83,10-04-2025,Yes,Pending,15-04-2025,Reprocessed
+CLM000392,DEN00457,CO50,These services are not medically necessary.,1518.43,04-05-2025,Yes,Approved,13-05-2025,Paid
+CLM000397,DEN00464,PR119,Benefit maximum for this time period or occurrence has been reached.,1064.29,16-04-2025,Yes,Approved,26-04-2025,Paid
+CLM000398,DEN00465,CO197,Precertification/authorization/notification absent.,1647.72,04-03-2025,Yes,Denied,12-03-2025,Written off
+CLM000409,DEN00478,CO18,Duplicate claim/service.,2354.18,03-05-2025,Yes,Approved,10-05-2025,Paid
+CLM000425,DEN00496,CO197,Precertification/authorization/notification absent.,999.73,24-02-2025,Yes,Approved,01-03-2025,Paid
+CLM000438,DEN00510,CO197,Precertification/authorization/notification absent.,1293.5,19-03-2025,Yes,Approved,25-03-2025,Paid
+CLM000480,DEN00555,CO11,Diagnosis inconsistent with procedure.,377.27,22-04-2025,Yes,Approved,28-04-2025,Paid
+CLM000482,DEN00557,CO197,Precertification/authorization/notification absent.,2353.39,01-04-2025,Yes,Approved,07-04-2025,Paid
+CLM000485,DEN00561,CO22,This care may be covered by another payer per coordination of benefits.,1203.11,20-02-2025,Yes,Approved,28-02-2025,Paid
+CLM000502,DEN00585,CO16,Claim/service lacks information or has submission/billing error.,710.83,25-02-2025,Yes,Approved,06-03-2025,Paid
+CLM000504,DEN00587,CO22,This care may be covered by another payer per coordination of benefits.,525.64,24-04-2025,Yes,Approved,03-05-2025,Paid
+CLM000523,DEN00607,PR109,Claim not covered by this payer/contractor.,2835.77,05-04-2025,Yes,Approved,13-04-2025,Paid
+CLM000553,DEN00645,CO119,Claim billed to wrong payer.,1147.63,16-03-2025,Yes,Pending,26-03-2025,Reprocessed
+CLM000580,DEN00675,PR109,Claim not covered by this payer/contractor.,2486.8,28-03-2025,Yes,Approved,04-04-2025,Paid
+CLM000583,DEN00678,PR96,Non-covered charges,1461.44,22-03-2025,Yes,Denied,31-03-2025,Written off
+CLM000605,DEN00701,CO197,Precertification/authorization/notification absent.,2308.86,08-05-2025,Yes,Pending,14-05-2025,Reprocessed
+CLM000606,DEN00702,PR125,Submission/billing error patient has no coverage with this plan.,1677.48,12-03-2025,Yes,Approved,21-03-2025,Paid
+CLM000616,DEN00713,PR109,Claim not covered by this payer/contractor.,2718.07,13-03-2025,Yes,Approved,19-03-2025,Paid
+CLM000629,DEN00727,CO119,Claim billed to wrong payer.,1590.94,26-03-2025,No,,,
+CLM000632,DEN00730,CO50,These services are not medically necessary.,705.48,11-05-2025,Yes,Approved,18-05-2025,Paid
+CLM000637,DEN00736,PR125,Submission/billing error patient has no coverage with this plan.,1506.19,28-04-2025,Yes,Approved,03-05-2025,Paid
+CLM000687,DEN00797,CO29,Claim denied because it was filed after the timely filing deadline.,564.09,22-05-2025,No,,,
+CLM000704,DEN00814,PR125,Submission/billing error patient has no coverage with this plan.,785.49,15-05-2025,Yes,Approved,23-05-2025,Paid
+CLM000706,DEN00816,PR119,Benefit maximum for this time period or occurrence has been reached.,873.1,24-02-2025,Yes,Approved,03-03-2025,Paid
+CLM000714,DEN00824,CO18,Duplicate claim/service.,2735.7,06-03-2025,Yes,Approved,12-03-2025,Paid
+CLM000729,DEN00843,CO119,Claim billed to wrong payer.,344.46,29-03-2025,Yes,Approved,04-04-2025,Paid
+CLM000749,DEN00865,CO58,Treatment was rendered in an invalid or inappropriate place of service.,2358.43,01-04-2025,No,,,
+CLM000753,DEN00869,PR27,Coverage terminated prior to DOS or patient not eligible.,1131.77,01-03-2025,No,,,
+CLM000759,DEN00875,CO18,Duplicate claim/service.,519.92,15-05-2025,No,,,
+CLM000779,DEN00900,PR109,Claim not covered by this payer/contractor.,691.09,19-02-2025,Yes,Approved,01-03-2025,Paid
+CLM000796,DEN00927,CO58,Treatment was rendered in an invalid or inappropriate place of service.,831.73,12-03-2025,Yes,Approved,20-03-2025,Paid
+CLM000806,DEN00938,CO29,Claim denied because it was filed after the timely filing deadline.,1096.28,13-03-2025,Yes,Approved,18-03-2025,Paid
+CLM000826,DEN00960,PR109,Claim not covered by this payer/contractor.,949.65,18-04-2025,Yes,Approved,26-04-2025,Paid
+CLM000833,DEN00969,CO11,Diagnosis inconsistent with procedure.,1053.46,30-03-2025,Yes,Pending,06-04-2025,Reprocessed
+CLM000840,DEN00977,PR119,Benefit maximum for this time period or occurrence has been reached.,1925.44,03-03-2025,Yes,Pending,09-03-2025,Reprocessed
+CLM000849,DEN00987,PR119,Benefit maximum for this time period or occurrence has been reached.,937.02,29-04-2025,No,,,
+CLM000850,DEN00988,CO197,Precertification/authorization/notification absent.,2483.8,04-05-2025,Yes,Approved,12-05-2025,Paid
+CLM000865,DEN01005,CO22,This care may be covered by another payer per coordination of benefits.,1132.33,22-03-2025,Yes,Approved,28-03-2025,Paid
+CLM000867,DEN01008,PR109,Claim not covered by this payer/contractor.,2193.13,13-03-2025,Yes,Pending,22-03-2025,Reprocessed
+CLM000875,DEN01019,CO50,These services are not medically necessary.,768.12,02-03-2025,Yes,Approved,12-03-2025,Paid
+CLM000876,DEN01020,CO58,Treatment was rendered in an invalid or inappropriate place of service.,1016.69,17-03-2025,Yes,Approved,26-03-2025,Paid
+CLM000880,DEN01024,CO50,These services are not medically necessary.,747.85,10-04-2025,Yes,Approved,19-04-2025,Paid
+CLM000883,DEN01027,CO119,Claim billed to wrong payer.,874.92,28-02-2025,Yes,Approved,08-03-2025,Paid
+CLM000884,DEN01028,CO16,Claim/service lacks information or has submission/billing error.,919.09,31-03-2025,Yes,Approved,06-04-2025,Paid
+CLM000887,DEN01032,CO29,Claim denied because it was filed after the timely filing deadline.,1468.43,03-03-2025,Yes,Approved,08-03-2025,Paid
+CLM000898,DEN01046,CO18,Duplicate claim/service.,1510.11,19-03-2025,Yes,Approved,28-03-2025,Paid
+CLM000906,DEN01057,CO58,Treatment was rendered in an invalid or inappropriate place of service.,4400.89,02-05-2025,Yes,Approved,08-05-2025,Paid
+CLM000919,DEN01072,CO58,Treatment was rendered in an invalid or inappropriate place of service.,2068.69,30-04-2025,Yes,Approved,10-05-2025,Paid
+CLM000926,DEN01079,CO18,Duplicate claim/service.,880.61,24-04-2025,Yes,Approved,02-05-2025,Paid
+CLM000936,DEN01091,CO16,Claim/service lacks information or has submission/billing error.,2172.1,20-05-2025,Yes,Approved,27-05-2025,Paid
+CLM000938,DEN01093,PR109,Claim not covered by this payer/contractor.,2580.05,24-05-2025,Yes,Approved,02-06-2025,Paid
+CLM000950,DEN01106,PR96,Non-covered charges,1348.24,06-03-2025,Yes,Approved,12-03-2025,Paid
+CLM000952,DEN01108,CO29,Claim denied because it was filed after the timely filing deadline.,1592.7,05-05-2025,Yes,Approved,13-05-2025,Paid
+CLM000965,DEN01123,CO197,Precertification/authorization/notification absent.,3734.32,22-03-2025,Yes,Approved,27-03-2025,Paid
+CLM000977,DEN01138,CO119,Claim billed to wrong payer.,1351.78,05-03-2025,Yes,Pending,13-03-2025,Reprocessed
+CLM000981,DEN01142,CO58,Treatment was rendered in an invalid or inappropriate place of service.,1415.94,18-03-2025,Yes,Approved,26-03-2025,Paid
+CLM000989,DEN01151,PR125,Submission/billing error patient has no coverage with this plan.,344.1,25-05-2025,Yes,Approved,01-06-2025,Paid
+CLM000995,DEN01158,CO197,Precertification/authorization/notification absent.,2237.62,11-04-2025,Yes,Approved,18-04-2025,Paid
+CLM001002,DEN01167,CO58,Treatment was rendered in an invalid or inappropriate place of service.,2655.25,07-05-2025,Yes,Approved,12-05-2025,Paid
+CLM001031,DEN01201,CO29,Claim denied because it was filed after the timely filing deadline.,1728.97,23-03-2025,Yes,Approved,31-03-2025,Paid
+CLM001038,DEN01210,PR125,Submission/billing error patient has no coverage with this plan.,123.29,21-03-2025,Yes,Approved,27-03-2025,Paid
+CLM001040,DEN01213,PR125,Submission/billing error patient has no coverage with this plan.,565.46,01-03-2025,Yes,Denied,08-03-2025,Written off
+CLM000398,DEN00465,CO197,Precertification/authorization/notification absent.,1647.72,04-03-2025,Yes,Denied,12-03-2025,Written off

@@ -1,0 +1,193 @@
+version: '3.8'
+
+x-airflow-common:
+  &airflow-common
+  image: apache/airflow:2.8.1-python3.11
+  environment:
+    &airflow-common-env
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    AIRFLOW__CORE__FERNET_KEY: ''
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+    AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session'
+    AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
+    _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-pandas==2.1.4 pyarrow==14.0.1 great-expectations==0.18.8 psycopg2-binary==2.9.9 pyyaml==6.0.1 dbt-core==1.7.4 dbt-postgres==1.7.4}
+    POSTGRES_HOST: ${POSTGRES_HOST:-warehouse-db}
+    POSTGRES_PORT: ${POSTGRES_PORT:-5432}
+    POSTGRES_DB: ${POSTGRES_DB:-healthcare_warehouse}
+    POSTGRES_USER: ${POSTGRES_USER:-etl_user}
+    POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-etl_password}
+    BRONZE_DATA_PATH: ${BRONZE_DATA_PATH:-/opt/airflow/data/bronze}
+    SILVER_DATA_PATH: ${SILVER_DATA_PATH:-/opt/airflow/data/silver}
+    SOURCE_CSV_PATH: ${SOURCE_CSV_PATH:-/opt/airflow/dataset}
+    ALERT_EMAIL: ${ALERT_EMAIL:-data-team@hospital.com}
+    ENVIRONMENT: ${ENVIRONMENT:-development}
+  volumes:
+    - ${AIRFLOW_PROJ_DIR:-.}/airflow/dags:/opt/airflow/dags
+    - ${AIRFLOW_PROJ_DIR:-.}/airflow/logs:/opt/airflow/logs
+    - ${AIRFLOW_PROJ_DIR:-.}/airflow/plugins:/opt/airflow/plugins
+    - ${AIRFLOW_PROJ_DIR:-.}/data:/opt/airflow/data
+    - ${AIRFLOW_PROJ_DIR:-.}/dataset:/opt/airflow/dataset
+    - ${AIRFLOW_PROJ_DIR:-.}/config:/opt/airflow/config
+    - ${AIRFLOW_PROJ_DIR:-.}/dbt_project:/opt/airflow/dbt_project
+    - ${AIRFLOW_PROJ_DIR:-.}/great_expectations:/opt/airflow/great_expectations
+    - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs_app
+    - ${AIRFLOW_PROJ_DIR:-.}:/opt/airflow/project
+  user: "${AIRFLOW_UID:-50000}:0"
+  depends_on:
+    &airflow-common-depends-on
+    postgres:
+      condition: service_healthy
+    warehouse-db:
+      condition: service_healthy
+  networks:
+    - healthcare-etl-network
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: healthcare-etl-postgres
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: always
+    ports:
+      - "5432:5432"
+    networks:
+      - healthcare-etl-network
+
+  airflow-webserver:
+    <<: *airflow-common
+    container_name: healthcare-etl-airflow-webserver
+    command: webserver
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    restart: always
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+
+  airflow-scheduler:
+    <<: *airflow-common
+    container_name: healthcare-etl-airflow-scheduler
+    command: scheduler
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8974/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    restart: always
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+
+  airflow-init:
+    <<: *airflow-common
+    container_name: healthcare-etl-airflow-init
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        mkdir -p /sources/logs /sources/dags /sources/plugins
+        chown -R "${AIRFLOW_UID}:0" /sources/{logs,dags,plugins}
+        exec /entrypoint airflow version
+    environment:
+      <<: *airflow-common-env
+      _AIRFLOW_DB_MIGRATE: 'true'
+      _AIRFLOW_WWW_USER_CREATE: 'true'
+      _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
+      _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
+    user: "0:0"
+    volumes:
+      - ${AIRFLOW_PROJ_DIR:-.}/airflow:/sources
+    networks:
+      - healthcare-etl-network
+
+  warehouse-db:
+    image: postgres:15
+    container_name: healthcare-etl-warehouse-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-etl_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-etl_password}
+      POSTGRES_DB: ${POSTGRES_DB:-healthcare_warehouse}
+    volumes:
+      - warehouse-db-volume:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER:-etl_user}", "-d", "${POSTGRES_DB:-healthcare_warehouse}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: always
+    ports:
+      - "5433:5432"
+    networks:
+      - healthcare-etl-network
+
+  superset:
+    image: apache/superset:3.0.0
+    container_name: healthcare-etl-superset
+    environment:
+      SUPERSET_SECRET_KEY: ${SUPERSET_SECRET_KEY:-superset_secret_key_change_me}
+      SUPERSET_LOAD_EXAMPLES: 'no'
+      DATABASE_HOST: warehouse-db
+      DATABASE_PORT: 5432
+      DATABASE_DB: ${POSTGRES_DB:-healthcare_warehouse}
+      DATABASE_USER: ${POSTGRES_USER:-etl_user}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD:-etl_password}
+    ports:
+      - "8088:8088"
+    volumes:
+      - superset-volume:/app/superset_home
+    command: >
+      bash -c "
+      superset db upgrade &&
+      (superset fab create-admin --username admin --firstname Admin --lastname User --email admin@superset.com --password admin || true) &&
+      superset init &&
+      gunicorn --bind 0.0.0.0:8088 --workers 4 --timeout 120 --limit-request-line 0 --limit-request-field_size 0 'superset.app:create_app()'
+      "
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8088/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 90s
+    restart: always
+    depends_on:
+      warehouse-db:
+        condition: service_healthy
+    networks:
+      - healthcare-etl-network
+
+volumes:
+  postgres-db-volume:
+    driver: local
+  warehouse-db-volume:
+    driver: local
+  superset-volume:
+    driver: local
+
+networks:
+  healthcare-etl-network:
+    driver: bridge
+    name: healthcare-etl-network

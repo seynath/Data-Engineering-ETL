@@ -1,0 +1,49 @@
+name: 'healthcare_etl'
+version: '1.0.0'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'healthcare_etl'
+
+# These configurations specify where dbt should look for different types of files.
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Configuring models
+models:
+  healthcare_etl:
+    # Staging models - read from Silver Parquet files
+    staging:
+      +materialized: view
+      +schema: staging
+      
+    # Dimension models - create dimension tables
+    dimensions:
+      +materialized: table
+      +schema: public
+      
+    # Fact models - create fact tables with incremental loading
+    facts:
+      +materialized: incremental
+      +unique_key: 'encounter_id'
+      +on_schema_change: 'fail'
+      +schema: public
+
+# Seeds configuration
+seeds:
+  healthcare_etl:
+    +schema: public
+
+# Tests configuration
+tests:
+  healthcare_etl:
+    +store_failures: true
+    +schema: test_results

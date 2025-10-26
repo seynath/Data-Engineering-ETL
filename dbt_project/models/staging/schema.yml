@@ -1,0 +1,137 @@
+version: 2
+
+models:
+  - name: stg_patients
+    description: "Staging view for patient data from Silver layer"
+    columns:
+      - name: patient_id
+        description: "Unique patient identifier"
+        tests:
+          - unique
+          - not_null
+      - name: age
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 120
+
+  - name: stg_encounters
+    description: "Staging view for encounter data from Silver layer"
+    columns:
+      - name: encounter_id
+        description: "Unique encounter identifier"
+        tests:
+          - unique
+          - not_null
+      - name: patient_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_patients')
+              field: patient_id
+      - name: provider_id
+        tests:
+          - relationships:
+              to: ref('stg_providers')
+              field: provider_id
+
+  - name: stg_diagnoses
+    description: "Staging view for diagnosis codes from Silver layer"
+    columns:
+      - name: diagnosis_id
+        tests:
+          - unique
+          - not_null
+      - name: encounter_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_encounters')
+              field: encounter_id
+      - name: diagnosis_code
+        tests:
+          - not_null
+
+  - name: stg_procedures
+    description: "Staging view for procedure codes from Silver layer"
+    columns:
+      - name: procedure_code
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_medications
+    description: "Staging view for medication data from Silver layer"
+    columns:
+      - name: medication_id
+        tests:
+          - unique
+          - not_null
+      - name: encounter_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_encounters')
+              field: encounter_id
+      - name: cost
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+
+  - name: stg_lab_tests
+    description: "Staging view for lab test data from Silver layer"
+    columns:
+      - name: lab_id
+        tests:
+          - unique
+          - not_null
+      - name: encounter_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_encounters')
+              field: encounter_id
+
+  - name: stg_claims_billing
+    description: "Staging view for claims and billing data from Silver layer"
+    columns:
+      - name: billing_id
+        tests:
+          - unique
+          - not_null
+      - name: encounter_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_encounters')
+              field: encounter_id
+      - name: billed_amount
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: paid_amount
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+
+  - name: stg_providers
+    description: "Staging view for provider data from Silver layer"
+    columns:
+      - name: provider_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_denials
+    description: "Staging view for denial data from Silver layer"
+    columns:
+      - name: denial_id
+        tests:
+          - unique
+          - not_null
+      - name: claim_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_claims_billing')
+              field: claim_id

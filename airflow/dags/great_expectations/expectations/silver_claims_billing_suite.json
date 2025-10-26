@@ -1,0 +1,85 @@
+{
+  "data_asset_type": "Dataset",
+  "expectation_suite_name": "silver_claims_billing_suite",
+  "expectations": [
+    {
+      "expectation_type": "expect_table_columns_to_match_ordered_list",
+      "kwargs": {
+        "column_list": [
+          "billing_id",
+          "patient_id",
+          "encounter_id",
+          "insurance_provider",
+          "payment_method",
+          "claim_id",
+          "claim_billing_date",
+          "billed_amount",
+          "paid_amount",
+          "claim_status",
+          "denial_reason",
+          "load_timestamp",
+          "source_file",
+          "record_hash"
+        ]
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_unique",
+      "kwargs": {
+        "column": "billing_id"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "billing_id"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "encounter_id"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "billed_amount",
+        "min_value": 0,
+        "max_value": null
+      },
+      "meta": {
+        "notes": "Value range check - costs must be non-negative"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "paid_amount",
+        "min_value": 0,
+        "max_value": null
+      },
+      "meta": {
+        "notes": "Value range check - costs must be non-negative"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_match_regex",
+      "kwargs": {
+        "column": "patient_id",
+        "regex": "^PAT\\d{6}$"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_match_regex",
+      "kwargs": {
+        "column": "encounter_id",
+        "regex": "^ENC\\d{6}$"
+      }
+    }
+  ],
+  "ge_cloud_id": null,
+  "meta": {
+    "great_expectations_version": "0.18.8"
+  }
+}

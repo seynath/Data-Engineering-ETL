@@ -1,0 +1,15 @@
+{
+  "alert_type": "PERFORMANCE_DEGRADATION",
+  "severity": "WARNING",
+  "subject": "Performance Degradation: silver_transform_encounters",
+  "message": "\nTask execution time exceeded the expected threshold.\n\nTask: silver_transform_encounters\nExecution Time: 125.50 seconds\nThreshold: 60.00 seconds\nDifference: 65.50 seconds (109.2% slower)\n\nPlease investigate potential performance issues.\n",
+  "metadata": {
+    "task_name": "silver_transform_encounters",
+    "execution_time": 125.5,
+    "threshold": 60.0
+  },
+  "timestamp": "2025-10-24T19:46:12.005116Z",
+  "recipients": [
+    "data-team@hospital.com"
+  ]
+}

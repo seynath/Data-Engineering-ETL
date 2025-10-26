@@ -1,0 +1,102 @@
+medication_id,encounter_id,drug_name,dosage,route,frequency,duration,prescribed_date,prescriber_id,cost
+MED00001,ENC031127,Alprazolam,0.25 mg,Oral,Twice daily,14 days,11-01-2025,PRO01436,8.0
+MED00002,ENC051072,Folic Acid,400 mcg,Oral,Once daily,90 days,12-02-2025,PRO00919,3.0
+MED00003,ENC019653,Folic Acid,400 mcg,Oral,Once daily,90 days,30-03-2025,PRO00893,3.0
+MED00004,ENC047035,Dolutegravir,50 mg,Oral,Once daily,30 days,02-02-2025,PRO01388,450.0
+MED00004,ENC047035,Atazanavir,300 mg,Oral,Once daily,30 days,02-02-2025,PRO01388,500.0
+MED00004,ENC047035,Tenofovir/Emtricitabine,300/200 mg,Oral,Once daily,30 days,02-02-2025,PRO01388,600.0
+MED00004,ENC047035,Ritonavir,100 mg,Oral,Once daily,30 days,02-02-2025,PRO01388,120.0
+MED00005,ENC066343,Amoxicillin-Clavulanate,875/125 mg,Oral,Twice daily,10 days,07-02-2025,PRO01326,20.0
+MED00005,ENC066343,Nasal Saline Spray,0.65%,Nasal,As needed,10 days,07-02-2025,PRO01326,3.0
+MED00006,ENC024063,Tretinoin,0.03%,Topical,Once daily at night,30 days,07-01-2025,PRO01214,20.0
+MED00006,ENC024063,Benzoyl Peroxide,,Topical,Once daily,30 days,07-01-2025,PRO01214,6.0
+MED00007,ENC029664,Oral Contraceptive (Ethinyl Estradiol/Norgestimate),,Oral,Once daily,28 days,24-03-2025,PRO00896,15.0
+MED00007,ENC029664,Medroxyprogesterone,,Oral,Once daily,10 days,24-03-2025,PRO00896,12.0
+MED00007,ENC029664,Ibuprofen,400 mg,Oral,Every 6 hours,5 days,24-03-2025,PRO00896,4.0
+MED00008,ENC046790,Amlodipine,5 mg,Oral,Once daily,30 days,08-01-2025,PRO00107,7.0
+MED00008,ENC046790,Lisinopril,10 mg,Oral,Once daily,30 days,08-01-2025,PRO00107,6.0
+MED00008,ENC046790,Hydrochlorothiazide,25 mg,Oral,Once daily,30 days,08-01-2025,PRO00107,5.0
+MED00009,ENC024970,Metronidazole,500 mg,IV,Every 8 hours,3 days,08-03-2025,PRO00568,12.0
+MED00009,ENC024970,Acetaminophen,500 mg,Oral,Every 6 hours,5 days,08-03-2025,PRO00568,3.0
+MED00010,ENC010924,Diphenhydramine,25 mg,Oral,At bedtime,3 days,10-01-2025,PRO00946,2.0
+MED00010,ENC010924,Acetaminophen,500 mg,Oral,As needed,3 days,10-01-2025,PRO00946,3.0
+MED00011,ENC002824,Pantoprazole,40 mg,Oral,Once daily,30 days,17-03-2025,PRO00603,8.0
+MED00012,ENC018011,Ondansetron,4 mg,Oral,Every 8 hours,3 days,16-01-2025,PRO00004,6.0
+MED00012,ENC018011,Acetaminophen,500 mg,Oral,Every 6 hours,5 days,16-01-2025,PRO00004,3.0
+MED00013,ENC000442,Clobetasol,0.05%,Topical,Twice daily,4 weeks,02-03-2025,PRO01269,40.0
+MED00014,ENC009261,Ibuprofen,400 mg,Oral,Every 6 hours,5 days,18-02-2025,PRO00879,4.0
+MED00015,ENC052367,Albuterol-Ipratropium,2 puffs,Inhalation,Every 6 hours,30 days,11-01-2025,PRO00326,28.0
+MED00016,ENC048151,Dutasteride,0.5 mg,Oral,Once daily,30 days,19-01-2025,PRO01198,30.0
+MED00016,ENC048151,Finasteride,5 mg,Oral,Once daily,30 days,19-01-2025,PRO01198,20.0
+MED00016,ENC048151,Alfuzosin,10 mg,Oral,Once daily,30 days,19-01-2025,PRO01198,22.0
+MED00017,ENC048030,Ibuprofen,400 mg,Oral,Every 6 hours,5 days,15-03-2025,PRO00859,4.0
+MED00017,ENC048030,Naproxen,500 mg,Oral,Twice daily,5 days,15-03-2025,PRO00859,5.0
+MED00018,ENC025739,Sodium Phosphate,45 mL,Oral,Split dose,1 day prep,09-03-2025,PRO01104,5.0
+MED00018,ENC025739,Polyethylene Glycol,17 g,Oral,Once daily,1 day prep,09-03-2025,PRO01104,8.0
+MED00018,ENC025739,Bisacodyl,5 mg,Oral,Three tablets,1 day prep,09-03-2025,PRO01104,4.0
+MED00018,ENC025739,Simethicone,80 mg,Oral,As needed,1 day,09-03-2025,PRO01104,3.0
+MED00019,ENC044231,Ranolazine,500 mg,Oral,Twice daily,30 days,04-01-2025,PRO00222,25.0
+MED00020,ENC023183,Acetaminophen,500 mg,Oral,As needed,3 days,12-02-2025,PRO00951,3.0
+MED00021,ENC058451,Dicyclomine,20 mg,Oral,Four times daily,5 days,20-03-2025,PRO00893,6.0
+MED00021,ENC058451,Ibuprofen,400 mg,Oral,Every 6 hours,5 days,20-03-2025,PRO00893,4.0
+MED00022,ENC013492,Carboplatin,AUC 5,IV,Once every 3 weeks,3 cycles,08-03-2025,PRO00755,180.0
+MED00023,ENC030132,Aspirin,325 mg,Oral,Once daily,5 days,25-02-2025,PRO00045,2.5
+MED00024,ENC021890,Prednisone,20 mg,Oral,Once daily,5 days,21-03-2025,PRO00044,6.0
+MED00025,ENC013051,Acetaminophen,500 mg,Oral,Every 6 hours,5 days,25-03-2025,PRO00632,3.0
+MED00026,ENC041432,Magnesium Oxide,400 mg,Oral,Once daily,3 days,28-01-2025,PRO00657,4.0
+MED00027,ENC066356,Acetaminophen,500 mg,Oral,Every 6 hours,7 days,12-01-2025,PRO00441,3.0
+MED00028,ENC042964,Amoxicillin,500 mg,Oral,Three times daily,7 days,04-03-2025,PRO00818,10.0
+MED00029,ENC050775,Acetaminophen,500 mg,Oral,Every 6 hours,5 days,09-02-2025,PRO00628,3.0
+MED00030,ENC055112,Naproxen,500 mg,Oral,Twice daily,5 days,27-03-2025,PRO00408,5.0
+MED00031,ENC023487,Cyclobenzaprine,5 mg,Oral,Three times daily,5 days,28-03-2025,PRO00190,6.0
+MED00032,ENC048928,Erythropoietin,4000 units,Subcutaneous,Once weekly,4 weeks,04-02-2025,PRO00674,100.0
+MED00032,ENC048928,Iron Sucrose,100 mg,IV,Weekly,4 weeks,04-02-2025,PRO00674,80.0
+MED00032,ENC048928,Furosemide,20 mg,Oral,Once daily,30 days,04-02-2025,PRO00674,6.0
+MED00033,ENC066699,Cyclobenzaprine,5 mg,Oral,At bedtime,7 days,05-02-2025,PRO00020,7.5
+MED00034,ENC031184,Zolpidem,5 mg,Oral,At bedtime,14 days,02-02-2025,PRO01284,6.0
+MED00035,ENC012236,Ondansetron,4 mg,Oral,Every 8 hours,3 days,03-03-2025,PRO00014,6.0
+MED00036,ENC011338,Albuterol,2 puffs,Inhalation,Every 4 hours,7 days,24-02-2025,PRO00043,15.0
+MED00036,ENC011338,Furosemide,40 mg,Oral,Once daily,10 days,24-02-2025,PRO00043,9.0
+MED00037,ENC045467,Albuterol,2 puffs,Inhalation,Every 4 hours,7 days,11-01-2025,PRO00042,15.0
+MED00038,ENC019631,Acetaminophen,500 mg,Oral,Every 6 hours,5 days,11-01-2025,PRO00557,3.0
+MED00039,ENC050597,Dicyclomine,20 mg,Oral,Four times daily,7 days,22-02-2025,PRO00537,7.0
+MED00040,ENC024638,Furosemide,40 mg,Oral,Once daily,10 days,28-02-2025,PRO00023,9.0
+MED00040,ENC024638,Prednisone,20 mg,Oral,Once daily,5 days,28-02-2025,PRO00023,6.0
+MED00040,ENC024638,Ipratropium,0.5 mg,Inhalation,Three times daily,7 days,28-02-2025,PRO00023,10.0
+MED00040,ENC024638,Albuterol,2 puffs,Inhalation,Every 4 hours,7 days,28-02-2025,PRO00023,15.0
+MED00041,ENC025881,Calcium Carbonate + Vitamin D,500 mg,Oral,Once daily,30 days,17-01-2025,PRO00873,7.0
+MED00042,ENC044856,Dicyclomine,20 mg,Oral,Four times daily,5 days,21-01-2025,PRO00906,6.0
+MED00043,ENC022409,Cyclobenzaprine,5 mg,Oral,At bedtime,7 days,11-03-2025,PRO00063,7.5
+MED00044,ENC040166,Furosemide,20 mg,Oral,Once daily,30 days,07-02-2025,PRO00659,6.0
+MED00045,ENC021822,Metoprolol,50 mg,Oral,Twice daily,7 days,02-02-2025,PRO00023,8.0
+MED00046,ENC015810,Folic Acid,400 mcg,Oral,Once daily,90 days,20-02-2025,PRO00889,3.0
+MED00047,ENC044955,Furosemide,40 mg,Oral,Once daily,10 days,15-03-2025,PRO00052,9.0
+MED00047,ENC044955,Ipratropium,0.5 mg,Inhalation,Three times daily,7 days,15-03-2025,PRO00052,10.0
+MED00047,ENC044955,Albuterol,2 puffs,Inhalation,Every 4 hours,7 days,15-03-2025,PRO00052,15.0
+MED00047,ENC044955,Prednisone,20 mg,Oral,Once daily,5 days,15-03-2025,PRO00052,6.0
+MED00048,ENC022268,Furosemide,40 mg,Oral,Once daily,5 days,25-02-2025,PRO01290,3.0
+MED00048,ENC022268,Prednisone,20 mg,Oral,Once daily,7 days,25-02-2025,PRO01290,5.0
+MED00048,ENC022268,Vitamin B12,1000 mcg,IM,Once weekly,4 weeks,25-02-2025,PRO01290,20.0
+MED00049,ENC027494,Furosemide,40 mg,Oral,Once daily,10 days,16-01-2025,PRO00050,9.0
+MED00050,ENC021695,Medroxyprogesterone,10 mg,Oral,Once daily,10 days,27-02-2025,PRO00908,12.0
+MED00050,ENC021695,Oral Contraceptive (Ethinyl Estradiol/Norgestimate),1 tablet,Oral,Once daily,28 days,27-02-2025,PRO00908,15.0
+MED00050,ENC021695,Tranexamic Acid,650 mg,Oral,Three times daily,5 days,27-02-2025,PRO00908,20.0
+MED00050,ENC021695,Ibuprofen,400 mg,Oral,Every 6 hours,5 days,27-02-2025,PRO00908,4.0
+MED00051,ENC016115,Hydrochlorothiazide,25 mg,Oral,Once daily,30 days,30-01-2025,PRO01021,5.0
+MED00052,ENC011216,Atorvastatin,20 mg,Oral,Once daily,30 days,14-02-2025,PRO00060,12.0
+MED00053,ENC069202,Peginterferon alfa-2a,180 mcg,Subcutaneous,Once weekly,12 weeks,01-02-2025,PRO01355,900.0
+MED00054,ENC066178,Amlodipine,5 mg,Oral,Once daily,30 days,06-02-2025,PRO00085,7.0
+MED00055,ENC022864,Erlotinib,150 mg,Oral,Once daily,30 days,01-03-2025,PRO00757,300.0
+MED00056,ENC067240,Prenatal Vitamins,1 tablet,Oral,Once daily,90 days,20-01-2025,PRO00917,15.0
+MED00057,ENC002220,Fluticasone,110 mcg,Inhalation,Twice daily,5 days,02-03-2025,PRO00927,18.0
+MED00058,ENC056471,Ranolazine,500 mg,Oral,Twice daily,30 days,19-03-2025,PRO00247,25.0
+MED00059,ENC062000,Omeprazole,20 mg,Oral,Once daily,30 days,10-01-2025,PRO00584,5.0
+MED00060,ENC028543,Metoprolol,50 mg,Oral,Twice daily,7 days,03-02-2025,PRO00056,8.0
+MED00061,ENC014451,Propofol,200 mg,IV,Single dose,1 day,18-02-2025,PRO01057,25.0
+MED00061,ENC014451,Midazolam,5 mg,IV,Single dose,1 day,18-02-2025,PRO01057,12.0
+MED00062,ENC046635,Amlodipine,5 mg,Oral,Once daily,30 days,21-02-2025,PRO00264,12.0
+MED00063,ENC061230,Pregabalin,75 mg,Oral,Twice daily,30 days,14-01-2025,PRO00391,30.0
+MED00064,ENC004241,Diphenhydramine,25 mg,Oral,At bedtime,10 days,26-01-2025,PRO01444,5.0
+MED00065,ENC036285,Phenylephrine,10 mg,Oral,Every 6 hours,5 days,23-03-2025,PRO00174,5.0
+MED00066,ENC006285,Tiotropium,18 mcg,Inhalation,Once daily,30 days,23-02-2025,PRO00316,35.0
+MED00027,ENC066356,Acetaminophen,500 mg,Oral,Every 6 hours,7 days,12-01-2025,PRO00441,3.0

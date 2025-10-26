@@ -1,0 +1,22 @@
+# Core Airflow
+apache-airflow==2.8.1
+apache-airflow-providers-postgres==5.10.0
+
+# Data Processing
+pandas==2.1.4
+pyarrow==14.0.2
+
+# Data Quality
+great-expectations==0.18.8
+
+# Database
+psycopg2-binary==2.9.9
+
+# Configuration
+pyyaml==6.0.1
+
+# Utilities
+python-dotenv==1.0.0
+
+# Logging
+python-json-logger==2.0.7

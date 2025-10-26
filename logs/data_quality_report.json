@@ -1,0 +1,181 @@
+{
+  "report_generated": "2025-10-24T22:50:53.423829",
+  "total_validations": 1,
+  "overall_success": false,
+  "validations": [
+    {
+      "success": false,
+      "run_id": "{\n  \"run_name\": \"silver_2025-10-24\",\n  \"run_time\": \"2025-10-24T22:50:50.458323+05:30\"\n}",
+      "run_time": "2025-10-24T22:50:53.423201",
+      "statistics": {
+        "evaluated_validations": 9,
+        "successful_validations": 5,
+        "unsuccessful_validations": 4,
+        "success_percent": 55.55555555555556
+      },
+      "validation_results": [
+        {
+          "expectation_suite_name": "silver_patients_suite",
+          "success": true,
+          "statistics": {
+            "evaluated_expectations": 11,
+            "successful_expectations": 11,
+            "unsuccessful_expectations": 0,
+            "success_percent": 100.0
+          }
+        },
+        {
+          "expectation_suite_name": "silver_encounters_suite",
+          "success": false,
+          "statistics": {
+            "evaluated_expectations": 10,
+            "successful_expectations": 9,
+            "unsuccessful_expectations": 1,
+            "success_percent": 90.0
+          },
+          "failed_expectations": [
+            {
+              "expectation_type": "expect_column_values_to_match_regex",
+              "kwargs": {
+                "column": "provider_id",
+                "regex": "^PRO\\d{6}$",
+                "batch_id": "9e40a0de0dde1c8101e8d79ca9d94b0a"
+              },
+              "result": {
+                "element_count": 70000,
+                "unexpected_count": 70000,
+                "unexpected_percent": 100.0,
+                "observed_value": null
+              }
+            }
+          ]
+        },
+        {
+          "expectation_suite_name": "silver_diagnoses_suite",
+          "success": true,
+          "statistics": {
+            "evaluated_expectations": 3,
+            "successful_expectations": 3,
+            "unsuccessful_expectations": 0,
+            "success_percent": 100.0
+          }
+        },
+        {
+          "expectation_suite_name": "silver_procedures_suite",
+          "success": true,
+          "statistics": {
+            "evaluated_expectations": 4,
+            "successful_expectations": 4,
+            "unsuccessful_expectations": 0,
+            "success_percent": 100.0
+          }
+        },
+        {
+          "expectation_suite_name": "silver_medications_suite",
+          "success": false,
+          "statistics": {
+            "evaluated_expectations": 4,
+            "successful_expectations": 3,
+            "unsuccessful_expectations": 1,
+            "success_percent": 75.0
+          },
+          "failed_expectations": [
+            {
+              "expectation_type": "expect_column_values_to_be_between",
+              "kwargs": {
+                "column": "medication_cost",
+                "min_value": 0,
+                "max_value": null,
+                "mostly": 0.95,
+                "batch_id": "3126b5e0c13938fc8f0a674d05537c66"
+              },
+              "result": {
+                "element_count": null,
+                "unexpected_count": null,
+                "unexpected_percent": null,
+                "observed_value": null
+              }
+            }
+          ]
+        },
+        {
+          "expectation_suite_name": "silver_lab_tests_suite",
+          "success": true,
+          "statistics": {
+            "evaluated_expectations": 3,
+            "successful_expectations": 3,
+            "unsuccessful_expectations": 0,
+            "success_percent": 100.0
+          }
+        },
+        {
+          "expectation_suite_name": "silver_claims_billing_suite",
+          "success": true,
+          "statistics": {
+            "evaluated_expectations": 8,
+            "successful_expectations": 8,
+            "unsuccessful_expectations": 0,
+            "success_percent": 100.0
+          }
+        },
+        {
+          "expectation_suite_name": "silver_providers_suite",
+          "success": false,
+          "statistics": {
+            "evaluated_expectations": 5,
+            "successful_expectations": 4,
+            "unsuccessful_expectations": 1,
+            "success_percent": 80.0
+          },
+          "failed_expectations": [
+            {
+              "expectation_type": "expect_column_values_to_match_regex",
+              "kwargs": {
+                "column": "provider_id",
+                "regex": "^PRO\\d{6}$",
+                "batch_id": "c269bec4106d6f446885ba3df8ad0f69"
+              },
+              "result": {
+                "element_count": 1491,
+                "unexpected_count": 1491,
+                "unexpected_percent": 100.0,
+                "observed_value": null
+              }
+            }
+          ]
+        },
+        {
+          "expectation_suite_name": "silver_denials_suite",
+          "success": false,
+          "statistics": {
+            "evaluated_expectations": 4,
+            "successful_expectations": 3,
+            "unsuccessful_expectations": 1,
+            "success_percent": 75.0
+          },
+          "failed_expectations": [
+            {
+              "expectation_type": "expect_column_values_to_not_be_null",
+              "kwargs": {
+                "column": "billing_id",
+                "batch_id": "ae7d07214b9f64c9383ad37e115f4280"
+              },
+              "result": {
+                "element_count": null,
+                "unexpected_count": null,
+                "unexpected_percent": null,
+                "observed_value": null
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "aggregate_statistics": {
+    "total_evaluated_validations": 9,
+    "total_successful_validations": 5,
+    "total_failed_validations": 4,
+    "overall_success_rate": 55.55555555555556
+  }
+}

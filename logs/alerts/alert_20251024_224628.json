@@ -1,0 +1,46 @@
+{
+  "alert_type": "DATA_QUALITY_FAILURE",
+  "severity": "CRITICAL",
+  "checkpoint": "silver_validation_checkpoint",
+  "timestamp": "2025-10-24T22:46:28.307196",
+  "success_rate": 0.0,
+  "failed_validations": 9,
+  "details": [
+    {
+      "suite": "silver_patients_suite",
+      "failed_expectations": []
+    },
+    {
+      "suite": "silver_encounters_suite",
+      "failed_expectations": []
+    },
+    {
+      "suite": "silver_diagnoses_suite",
+      "failed_expectations": []
+    },
+    {
+      "suite": "silver_procedures_suite",
+      "failed_expectations": []
+    },
+    {
+      "suite": "silver_medications_suite",
+      "failed_expectations": []
+    },
+    {
+      "suite": "silver_lab_tests_suite",
+      "failed_expectations": []
+    },
+    {
+      "suite": "silver_claims_billing_suite",
+      "failed_expectations": []
+    },
+    {
+      "suite": "silver_providers_suite",
+      "failed_expectations": []
+    },
+    {
+      "suite": "silver_denials_suite",
+      "failed_expectations": []
+    }
+  ]
+}

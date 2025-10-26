@@ -1,0 +1,302 @@
+# Implementation Plan
+
+- [x] 1. Set up project structure and dependencies
+
+  - Create directory structure for Bronze/Silver data layers, Airflow DAGs, dbt models, and configuration files
+  - Create requirements.txt with all Python dependencies (apache-airflow, pandas, great-expectations, psycopg2-binary, pyyaml)
+  - Create docker-compose.yml for local development environment with Airflow, PostgreSQL, and Superset services
+  - Create .env.example file with all required environment variables
+  - _Requirements: 9.1, 9.2, 9.3_
+
+- [x] 2. Implement Bronze layer ingestion module
+
+  - [x] 2.1 Create Bronze ingestion Python module with CSV file copying and metadata generation
+    - Write `bronze_ingestion.py` with functions to copy CSV files to Bronze directory with timestamp prefix
+    - Implement metadata file generation with row counts, file sizes, and checksums
+    - Add validation to check all 9 expected CSV files are present
+    - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5_
+  - [ ]\* 2.2 Write unit tests for Bronze ingestion logic
+    - Create test fixtures with sample CSV data
+    - Test file copying, metadata generation, and missing file detection
+    - _Requirements: 1.1, 1.5_
+
+- [x] 3. Implement Silver layer transformation module
+
+  - [x] 3.1 Create data cleaning and transformation functions
+    - Write `silver_transformation.py` with date standardization function (DD-MM-YYYY to YYYY-MM-DD)
+    - Implement data type conversion functions for IDs, numeric fields, and dates
+    - Create missing data handling functions with appropriate fill strategies
+    - Implement deduplication logic based on primary keys
+    - Add audit column generation (load_timestamp, source_file, record_hash)
+    - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6_
+  - [x] 3.2 Create table-specific transformation configurations
+    - Write YAML configuration file defining transformations for each of the 9 tables
+    - Define primary keys, date columns, numeric columns, and categorical columns per table
+    - _Requirements: 2.1, 2.3, 2.5_
+  - [x] 3.3 Implement Parquet file writing with compression
+    - Add function to write transformed DataFrames to Parquet format with snappy compression
+    - Organize Silver layer directory structure by date
+    - _Requirements: 2.1_
+  - [ ]\* 3.4 Write unit tests for transformation functions
+    - Test date parsing with various formats
+    - Test missing data handling strategies
+    - Test deduplication logic
+    - _Requirements: 2.2, 2.3, 2.4_
+
+- [ ] 4. Implement Great Expectations data quality validation
+
+  - [x] 4.1 Set up Great Expectations project structure
+    - Initialize Great Expectations in the project
+    - Configure data sources for Bronze and Silver layers
+    - Create checkpoint configurations for validation workflows
+    - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5, 4.6_
+  - [x] 4.2 Create expectation suites for Bronze layer validation
+    - Write expectations for row count validation
+    - Add expectations for primary key uniqueness and non-null checks
+    - Create expectations for file format validation
+    - _Requirements: 4.1, 4.3_
+  - [x] 4.3 Create expectation suites for Silver layer validation
+    - Write expectations for schema validation (column names and types)
+    - Add expectations for value range checks (age 0-120, costs >= 0)
+    - Create expectations for date logic validation (admission_date <= discharge_date)
+    - Add expectations for ID pattern matching (PAT*, ENC*, PRO\* formats)
+    - Write expectations for referential integrity between tables
+    - _Requirements: 4.1, 4.2, 4.3, 4.4_
+  - [x] 4.4 Create validation runner module
+    - Write `data_quality.py` with functions to run Great Expectations checkpoints
+    - Implement validation result parsing and logging
+    - Add logic to raise alerts on validation failures
+    - _Requirements: 4.5, 4.6_
+
+- [x] 5. Set up PostgreSQL database and create Gold layer schema
+
+  - [x] 5.1 Create database initialization script
+    - Write SQL script to create healthcare_warehouse database
+    - Add database user creation with appropriate permissions
+    - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6_
+  - [x] 5.2 Create dimension table DDL scripts
+    - Write CREATE TABLE statements for dim_patient with SCD Type 2 columns
+    - Write CREATE TABLE statements for dim_provider, dim_date, dim_diagnosis, dim_procedure, dim_medication
+    - Add indexes on primary keys, foreign keys, and frequently queried columns
+    - _Requirements: 3.1, 3.3, 3.5_
+  - [x] 5.3 Create fact table DDL scripts
+    - Write CREATE TABLE statements for fact_encounter, fact_billing, fact_lab_test, fact_denial
+    - Add foreign key constraints to dimension tables
+    - Create indexes on foreign keys and date columns
+    - _Requirements: 3.2, 3.4, 3.6_
+  - [x] 5.4 Create dim_date population script
+    - Write Python script to generate date dimension records for 2020-2030
+    - Include year, quarter, month, week, day attributes and is_weekend flag
+    - _Requirements: 3.1_
+
+- [x] 6. Implement dbt project for Gold layer transformations
+
+  - [x] 6.1 Initialize dbt project structure
+    - Create dbt project with profiles.yml for PostgreSQL connection
+    - Set up directory structure for staging, dimensions, and facts models
+    - Configure dbt_project.yml with materializations and schema settings
+    - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
+  - [x] 6.2 Create staging models for all 9 source tables
+    - Write stg_patients.sql to read from Silver Parquet and apply minimal transformations
+    - Write stg_encounters.sql, stg_diagnoses.sql, stg_procedures.sql, stg_medications.sql
+    - Write stg_lab_tests.sql, stg_claims_billing.sql, stg_providers.sql, stg_denials.sql
+    - Add source freshness checks in sources.yml
+    - _Requirements: 6.1_
+  - [x] 6.3 Create dimension models with surrogate key generation
+    - Write dim_patient.sql with SCD Type 2 logic (valid_from, valid_to, is_current)
+    - Write dim_provider.sql with surrogate key generation
+    - Write dim_diagnosis.sql, dim_procedure.sql, dim_medication.sql with deduplication
+    - _Requirements: 6.1, 3.1, 3.3, 3.5_
+  - [x] 6.4 Create fact models with foreign key lookups
+    - Write fact_encounter.sql joining staging tables and looking up dimension keys
+    - Add denormalized attributes and calculated metrics (total_procedures, total_cost)
+    - Write fact_billing.sql with payment_rate calculation
+    - Write fact_lab_test.sql with is_abnormal flag logic
+    - Write fact_denial.sql with appeal tracking
+    - Configure incremental materialization with unique_key for all fact tables
+    - _Requirements: 6.1, 6.4, 3.2, 3.4_
+  - [x] 6.5 Add dbt tests for data quality
+    - Add generic tests (unique, not_null, relationships) to schema.yml files
+    - Write custom test for referential integrity across all fact/dimension relationships
+    - Write custom test to ensure no orphaned records in fact tables
+    - Add accepted_values tests for status and categorical fields
+    - _Requirements: 6.2, 6.5_
+  - [ ]\* 6.6 Generate dbt documentation
+    - Add descriptions for all models and columns in schema.yml files
+    - Generate dbt docs with `dbt docs generate`
+    - _Requirements: 6.3_
+
+- [x] 7. Create Airflow DAG for pipeline orchestration
+
+  - [x] 7.1 Create Bronze layer ingestion tasks
+    - Write Airflow DAG file `healthcare_etl_dag.py` with default_args configuration
+    - Create PythonOperator tasks for ingesting each of the 9 CSV files to Bronze layer
+    - Add task to validate Bronze layer with row count checks
+    - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 1.1, 1.3, 1.4_
+  - [x] 7.2 Create Silver layer transformation tasks
+    - Create PythonOperator tasks for transforming each Bronze table to Silver Parquet
+    - Add task dependencies ensuring Bronze validation completes before Silver transformations
+    - Create task to run Great Expectations validation on Silver layer
+    - _Requirements: 5.2, 5.3, 2.1, 4.4_
+  - [x] 7.3 Create dbt execution tasks
+    - Create BashOperator tasks to run dbt staging models
+    - Add task to run dbt tests on staging models
+    - Create tasks to run dbt dimension models, then fact models
+    - Add task to run dbt tests on Gold layer
+    - _Requirements: 5.2, 6.1, 6.2, 6.5_
+  - [x] 7.4 Add data quality and reporting tasks
+    - Create task to run final Gold layer validation with Great Expectations
+    - Add task to generate data quality report with validation results
+    - Create task to refresh Superset cache after successful pipeline completion
+    - _Requirements: 5.6, 4.6_
+  - [x] 7.5 Configure DAG scheduling and alerting
+    - Set schedule_interval to daily at 2:00 AM UTC
+    - Configure email alerts on failure with detailed error information
+    - Add retry logic with exponential backoff (3 retries, 5 min initial delay)
+    - Set task timeout limits to prevent hung processes
+    - _Requirements: 5.1, 5.3, 5.4, 5.5, 8.5_
+
+- [x] 8. Implement logging and error handling
+
+  - [x] 8.1 Create centralized logging module
+    - Write `logger.py` with structured JSON logging configuration
+    - Implement log formatters with timestamp, task_id, and metadata fields
+    - Configure log levels (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+    - Set up log file rotation and retention policies
+    - _Requirements: 8.1, 8.2, 8.3, 8.4_
+  - [x] 8.2 Add error handling to all pipeline modules
+    - Wrap Bronze ingestion functions with try-except blocks and detailed error logging
+    - Add error handling to Silver transformation functions with data sample logging
+    - Implement error handling in data quality validation with failure details
+    - Add database connection error handling with retry logic
+    - _Requirements: 8.2, 8.5_
+  - [x] 8.3 Create alerting module
+    - Write `alerts.py` with email notification function using SMTP
+    - Implement alert severity levels (critical, warning)
+    - Add alert templates for different error types
+    - Configure alert recipients from environment variables
+    - _Requirements: 8.5_
+
+- [x] 9. Create configuration management system
+
+  - [x] 9.1 Create YAML configuration files
+    - Write `config/pipeline_config.yaml` with Bronze/Silver/Gold settings
+    - Define table configurations with primary keys and transformation rules
+    - Add data quality thresholds and validation settings
+    - _Requirements: 9.2, 9.3, 9.4, 9.5_
+  - [x] 9.2 Create configuration loader module
+    - Write `config_loader.py` to read YAML files and environment variables
+    - Implement environment variable substitution in configuration
+    - Add configuration validation at startup
+    - Provide default values for optional parameters
+    - _Requirements: 9.1, 9.2, 9.4, 9.5_
+
+- [x] 10. Set up Apache Superset dashboards
+
+  - [x] 10.1 Create database connection in Superset
+    - Configure PostgreSQL connection to healthcare_warehouse database
+    - Test connection and verify access to Gold layer tables
+    - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5, 7.6_
+  - [x] 10.2 Create datasets for dashboard queries
+    - Create Superset datasets for dimension and fact tables
+    - Define calculated columns (collection_rate, denial_rate, payment_rate)
+    - Configure column formatting (currency, percentages, dates)
+    - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5_
+  - [x] 10.3 Build Operational Overview dashboard
+    - Create KPI cards for total patients, encounters, providers
+    - Add line chart for daily admission trends by visit type
+    - Create bar chart for top 10 departments by patient volume
+    - Add pie chart for visit type distribution
+    - Create table showing recent encounters with status
+    - _Requirements: 7.1, 7.5_
+  - [x] 10.4 Build Financial Analytics dashboard
+    - Create KPI cards for total billed, paid, collection rate, denial rate
+    - Add line chart for daily revenue and payment trends
+    - Create bar chart for revenue by insurance provider
+    - Add funnel chart for claim status breakdown
+    - Create table for top denial reasons with counts and amounts
+    - _Requirements: 7.2, 7.5_
+  - [x] 10.5 Build Clinical Insights dashboard
+    - Create bar chart for top 20 diagnoses by frequency
+    - Add bar chart for top 20 procedures by volume
+    - Create heatmap for readmission rates by department and diagnosis
+    - Add table for chronic condition patients with encounter counts
+    - _Requirements: 7.3, 7.5_
+  - [x] 10.6 Build Provider Performance dashboard
+    - Create bar chart for patient volume by provider
+    - Add scatter plot for provider experience vs patient volume
+    - Create table for provider utilization with specialty and department
+    - Add bar chart for average length of stay by provider
+    - _Requirements: 7.4, 7.5_
+  - [x] 10.7 Build Medication Analysis dashboard
+    - Create bar chart for top 20 medications by prescription count
+    - Add line chart for medication cost trends over time
+    - Create bar chart for prescriptions by prescriber
+    - Add table for high-cost medications with average cost
+    - _Requirements: 7.5_
+  - [x] 10.8 Configure dashboard refresh and caching
+    - Set automatic refresh after successful pipeline completion
+    - Configure cache TTL to 1 hour for query results
+    - Add manual refresh buttons for ad-hoc analysis
+    - _Requirements: 7.6_
+
+- [x] 11. Create Docker Compose setup for local development
+
+  - [x] 11.1 Create Docker Compose configuration
+    - Write docker-compose.yml with services for Airflow (webserver, scheduler, worker), PostgreSQL, and Superset
+    - Configure volume mounts for DAGs, data directories, dbt project, and configuration files
+    - Set up networking between services
+    - Add health checks for all services
+    - _Requirements: 9.1, 9.2, 9.3_
+  - [x] 11.2 Create initialization scripts
+    - Write init script to create PostgreSQL database and users
+    - Create script to initialize Airflow metadata database
+    - Add script to run database DDL for Gold layer schema
+    - Create script to populate dim_date table
+    - _Requirements: 9.1, 9.4_
+  - [x] 11.3 Create startup documentation
+    - Write README.md with setup instructions and prerequisites
+    - Document environment variable configuration
+    - Add troubleshooting section for common issues
+    - Include commands to start/stop the environment
+    - _Requirements: 9.2, 9.3_
+
+- [ ] 12. Create end-to-end integration test
+
+  - [x] 12.1 Prepare test dataset
+    - Create sample CSV files with 100 rows each for all 9 tables
+    - Ensure test data includes edge cases (missing values, duplicates, date ranges)
+    - _Requirements: 1.1, 2.2, 2.4_
+  - [x] 12.2 Create integration test script
+    - Write Python script to run complete pipeline with test data
+    - Verify Bronze layer file creation and metadata
+    - Verify Silver layer Parquet files and row counts
+    - Verify Gold layer table population and star schema relationships
+    - Check that all dbt tests pass
+    - Validate data quality reports are generated
+    - _Requirements: 5.1, 5.2, 5.3, 5.6_
+  - [ ]\* 12.3 Add performance benchmarking
+    - Measure execution time for each pipeline stage
+    - Log row processing rates (rows per second)
+    - Compare against performance targets from design document
+    - _Requirements: 5.6_
+
+- [ ] 13. Create deployment and operations documentation
+  - [ ] 13.1 Write deployment guide
+    - Document production deployment steps
+    - Include infrastructure requirements (compute, storage, database)
+    - Add CI/CD pipeline configuration examples
+    - Document environment-specific configuration
+    - _Requirements: 9.2, 9.3_
+  - [ ] 13.2 Create operations runbook
+    - Document pipeline monitoring procedures
+    - Add troubleshooting guide for common errors
+    - Include data quality issue resolution steps
+    - Document backup and recovery procedures
+    - _Requirements: 8.1, 8.2, 8.4, 8.5_
+  - [ ] 13.3 Create user guide for analysts
+    - Document how to access Superset dashboards
+    - Explain available metrics and their calculations
+    - Add guide for creating custom queries
+    - Include data refresh schedule information
+    - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5, 7.6_

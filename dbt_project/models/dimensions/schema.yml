@@ -1,0 +1,90 @@
+version: 2
+
+models:
+  - name: dim_patient
+    description: "Patient dimension with SCD Type 2 for tracking historical changes"
+    columns:
+      - name: patient_key
+        description: "Surrogate key for patient dimension"
+        tests:
+          - unique
+          - not_null
+      - name: patient_id
+        description: "Natural key - patient identifier"
+        tests:
+          - not_null
+      - name: is_current
+        description: "Flag indicating if this is the current version of the patient record"
+        tests:
+          - not_null
+      - name: valid_from
+        description: "Start date for this version of the patient record"
+        tests:
+          - not_null
+      - name: valid_to
+        description: "End date for this version of the patient record (null for current)"
+  
+  - name: dim_provider
+    description: "Provider dimension with healthcare provider information"
+    columns:
+      - name: provider_key
+        description: "Surrogate key for provider dimension"
+        tests:
+          - unique
+          - not_null
+      - name: provider_id
+        description: "Natural key - provider identifier"
+        tests:
+          - unique
+          - not_null
+      - name: specialty
+        description: "Provider medical specialty"
+      - name: department
+        description: "Department where provider works"
+  
+  - name: dim_diagnosis
+    description: "Diagnosis dimension with ICD codes and descriptions"
+    columns:
+      - name: diagnosis_key
+        description: "Surrogate key for diagnosis dimension"
+        tests:
+          - unique
+          - not_null
+      - name: diagnosis_code
+        description: "Natural key - ICD diagnosis code"
+        tests:
+          - unique
+          - not_null
+      - name: is_chronic
+        description: "Flag indicating if this is a chronic condition"
+  
+  - name: dim_procedure
+    description: "Procedure dimension with CPT codes and descriptions"
+    columns:
+      - name: procedure_key
+        description: "Surrogate key for procedure dimension"
+        tests:
+          - unique
+          - not_null
+      - name: procedure_code
+        description: "Natural key - CPT procedure code"
+        tests:
+          - unique
+          - not_null
+  
+  - name: dim_medication
+    description: "Medication dimension with drug information"
+    columns:
+      - name: medication_key
+        description: "Surrogate key for medication dimension"
+        tests:
+          - unique
+          - not_null
+      - name: drug_name
+        description: "Name of the medication"
+        tests:
+          - not_null
+      - name: dosage
+        description: "Medication dosage"
+      - name: route
+        description: "Route of administration"

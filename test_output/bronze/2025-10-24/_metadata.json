@@ -1,0 +1,90 @@
+{
+  "run_date": "2025-10-24",
+  "ingestion_timestamp": "2025-10-24T21:46:22.833788+00:00",
+  "total_files": 9,
+  "total_rows": 909,
+  "total_size_bytes": 97754,
+  "files": [
+    {
+      "source_file": "patients.csv",
+      "bronze_file": "2025-10-24_patients.csv",
+      "row_count": 101,
+      "file_size_bytes": 15811,
+      "checksum_md5": "21198292c635c3ac4e88eb06c5a10b49",
+      "ingestion_timestamp": "2025-10-24T21:46:22.827961+00:00",
+      "run_date": "2025-10-24"
+    },
+    {
+      "source_file": "encounters.csv",
+      "bronze_file": "2025-10-24_encounters.csv",
+      "row_count": 101,
+      "file_size_bytes": 11507,
+      "checksum_md5": "1eb8918ee60944bb69f94376bb0bb01c",
+      "ingestion_timestamp": "2025-10-24T21:46:22.828854+00:00",
+      "run_date": "2025-10-24"
+    },
+    {
+      "source_file": "diagnoses.csv",
+      "bronze_file": "2025-10-24_diagnoses.csv",
+      "row_count": 101,
+      "file_size_bytes": 7833,
+      "checksum_md5": "ed115ec25162ec5fb0a350b39679ca2e",
+      "ingestion_timestamp": "2025-10-24T21:46:22.830433+00:00",
+      "run_date": "2025-10-24"
+    },
+    {
+      "source_file": "procedures.csv",
+      "bronze_file": "2025-10-24_procedures.csv",
+      "row_count": 101,
+      "file_size_bytes": 9330,
+      "checksum_md5": "554965b68097029f731187e035ecfe5b",
+      "ingestion_timestamp": "2025-10-24T21:46:22.831058+00:00",
+      "run_date": "2025-10-24"
+    },
+    {
+      "source_file": "medications.csv",
+      "bronze_file": "2025-10-24_medications.csv",
+      "row_count": 101,
+      "file_size_bytes": 9148,
+      "checksum_md5": "0fefa01037d24ed596339d9ce24dd8f5",
+      "ingestion_timestamp": "2025-10-24T21:46:22.831614+00:00",
+      "run_date": "2025-10-24"
+    },
+    {
+      "source_file": "lab_tests.csv",
+      "bronze_file": "2025-10-24_lab_tests.csv",
+      "row_count": 101,
+      "file_size_bytes": 10174,
+      "checksum_md5": "9054ae03f16d64b0d046ffe59c4871af",
+      "ingestion_timestamp": "2025-10-24T21:46:22.832072+00:00",
+      "run_date": "2025-10-24"
+    },
+    {
+      "source_file": "claims_and_billing.csv",
+      "bronze_file": "2025-10-24_claims_and_billing.csv",
+      "row_count": 101,
+      "file_size_bytes": 9475,
+      "checksum_md5": "d0f203e57227e0318cc602ad8ea8633b",
+      "ingestion_timestamp": "2025-10-24T21:46:22.832562+00:00",
+      "run_date": "2025-10-24"
+    },
+    {
+      "source_file": "providers.csv",
+      "bronze_file": "2025-10-24_providers.csv",
+      "row_count": 101,
+      "file_size_bytes": 11887,
+      "checksum_md5": "32dd4ad02129b87c83c3f96822eaea53",
+      "ingestion_timestamp": "2025-10-24T21:46:22.832982+00:00",
+      "run_date": "2025-10-24"
+    },
+    {
+      "source_file": "denials.csv",
+      "bronze_file": "2025-10-24_denials.csv",
+      "row_count": 101,
+      "file_size_bytes": 12589,
+      "checksum_md5": "7762a107fc16b5948ad54e1d7daebc04",
+      "ingestion_timestamp": "2025-10-24T21:46:22.833717+00:00",
+      "run_date": "2025-10-24"
+    }
+  ]
+}

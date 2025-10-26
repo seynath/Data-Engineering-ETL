@@ -1,0 +1,105 @@
+{
+  "data_asset_type": "Dataset",
+  "expectation_suite_name": "silver_encounters_suite",
+  "expectations": [
+    {
+      "expectation_type": "expect_table_columns_to_match_ordered_list",
+      "kwargs": {
+        "column_list": [
+          "encounter_id",
+          "patient_id",
+          "provider_id",
+          "visit_date",
+          "visit_type",
+          "department",
+          "reason_for_visit",
+          "diagnosis_code",
+          "admission_type",
+          "discharge_date",
+          "length_of_stay",
+          "status",
+          "readmitted_flag",
+          "load_timestamp",
+          "source_file",
+          "record_hash"
+        ]
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_unique",
+      "kwargs": {
+        "column": "encounter_id"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "encounter_id"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_match_regex",
+      "kwargs": {
+        "column": "encounter_id",
+        "regex": "^ENC\\d{6}$"
+      },
+      "meta": {
+        "notes": "ID pattern matching - ENC* format"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_match_regex",
+      "kwargs": {
+        "column": "patient_id",
+        "regex": "^PAT\\d{6}$"
+      },
+      "meta": {
+        "notes": "Foreign key ID pattern validation"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_match_regex",
+      "kwargs": {
+        "column": "provider_id",
+        "regex": "^PRO\\d{5}$"
+      },
+      "meta": {
+        "notes": "ID pattern matching - PRO00001 format (5 digits)"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "patient_id"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "provider_id"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "visit_date"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "length_of_stay",
+        "min_value": 0,
+        "max_value": null,
+        "mostly": 0.95
+      },
+      "meta": {
+        "notes": "Value range check - length of stay should be non-negative"
+      }
+    }
+  ],
+  "ge_cloud_id": null,
+  "meta": {
+    "great_expectations_version": "0.18.8"
+  }
+}

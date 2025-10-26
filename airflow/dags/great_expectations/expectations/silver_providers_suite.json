@@ -1,0 +1,50 @@
+{
+  "data_asset_type": "Dataset",
+  "expectation_suite_name": "silver_providers_suite",
+  "expectations": [
+    {
+      "expectation_type": "expect_column_values_to_be_unique",
+      "kwargs": {
+        "column": "provider_id"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "provider_id"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_match_regex",
+      "kwargs": {
+        "column": "provider_id",
+        "regex": "^PRO\\d{5}$"
+      },
+      "meta": {
+        "notes": "ID pattern matching - PRO00001 format (5 digits)"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "name"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "years_experience",
+        "min_value": 0,
+        "max_value": 60,
+        "mostly": 0.95
+      },
+      "meta": {
+        "notes": "Value range check for years of experience"
+      }
+    }
+  ],
+  "ge_cloud_id": null,
+  "meta": {
+    "great_expectations_version": "0.18.8"
+  }
+}

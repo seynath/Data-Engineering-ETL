@@ -1,0 +1,102 @@
+provider_id,name,department,specialty,npi,inhouse,location,years_experience,contact_info,email
+PRO00001,Michael Hernandez,Emergency Department,General Practitioner,8012135699,Yes,CA,16,481 151 2809,michael.hernandez@healthcare.org
+PRO00002,Dawn Owens,Emergency Department,General Practitioner,7777307830,Yes,CA,5,993 086 9628,dawn.owens@healthcare.org
+PRO00003,Catherine Knight,Emergency Department,General Practitioner,9906404640,Yes,CA,4,614 350 3958,catherine.knight@healthcare.org
+PRO00004,Roy Williams,Emergency Department,General Practitioner,3203917792,Yes,CA,20,,
+PRO00005,Cheryl Norris,Emergency Department,General Practitioner,2114085172,Yes,CA,15,,cheryl.norris@healthcare.org
+PRO00006,Ashley Martinez,Emergency Department,General Practitioner,8106151348,Yes,CA,11,599 325 9437,
+PRO00007,Marcus Kelly,Emergency Department,General Practitioner,1603556965,Yes,NM,2,,marcus.kelly@healthcare.org
+PRO00008,Devin Odom,Emergency Department,General Practitioner,2514075117,Yes,TN,17,817 343 5141,
+PRO00009,Brent Austin,Emergency Department,General Practitioner,5835449805,Yes,CA,25,474 954 0140,brent.austin@healthcare.org
+PRO00010,Devin Young,Emergency Department,General Practitioner,8252802955,Yes,CA,32,,devin.young@healthcare.org
+PRO00011,Joe Robles,Emergency Department,General Practitioner,7545300913,Yes,CA,3,283 256 6162,
+PRO00012,James Nunez,Emergency Department,General Practitioner,3061617294,Yes,CA,25,713 074 5420,james.nunez@healthcare.org
+PRO00013,Patricia Holland,Emergency Department,General Practitioner,,Yes,CA,35,983 406 3375,patricia.holland@healthcare.org
+PRO00014,Melanie Adams,Emergency Department,General Practitioner,,Yes,CA,3,389 004 3204,melanie.adams68@healthcare.org
+PRO00015,Ana Blanchard,Emergency Department,General Practitioner,,No,CA,9,,ana.blanchard@healthcare.org
+PRO00016,Carolyn Chapman,Emergency Department,General Practitioner,,Yes,CA,1,927 977 8608,carolyn.chapman@healthcare.org
+PRO00017,Maria Hawkins,Emergency Department,General Practitioner,6960621494,No,CA,1,900 862 6228,maria.hawkins@healthcare.org
+PRO00018,Robert Stewart,Emergency Department,General Practitioner,4035502628,No,CA,8,742 581 4609,robert.stewart@healthcare.org
+PRO00019,Kimberly Short,Emergency Department,General Practitioner,4542803544,Yes,CA,7,564 504 7087,kimberly.short@healthcare.org
+PRO00020,Matthew Newton,Emergency Department,General Practitioner,4654625209,Yes,CA,20,518 143 2292,
+PRO00021,James Wilson,Emergency Department,General Practitioner,4924873990,Yes,VA,17,115 133 6287,james.wilson@healthcare.org
+PRO00022,Joshua Thomas,Emergency Department,General Practitioner,2351311960,Yes,CA,18,884 075 7581,
+PRO00023,Shawn Jones,Emergency Department,General Practitioner,4923548486,Yes,CA,8,409 806 0735,shawn.jones@healthcare.org
+PRO00024,Sean Martinez,Emergency Department,General Practitioner,5694205711,Yes,CA,14,292 850 3798,sean.martinez@healthcare.org
+PRO00025,Daniel Newton,Emergency Department,General Practitioner,2569335930,Yes,CA,10,820 720 8874,daniel.newton@healthcare.org
+PRO00026,Christopher Davis,Emergency Department,General Practitioner,1748844049,Yes,CA,7,147 768 5379,
+PRO00027,Charles Figueroa,Emergency Department,General Practitioner,1602277366,Yes,MA,7,830 852 6997,charles.figueroa17@healthcare.org
+PRO00028,Doris Odonnell,Emergency Department,General Practitioner,5901731418,Yes,CA,1,174 394 6218,
+PRO00029,Aaron Torres,Emergency Department,General Practitioner,9282882384,Yes,CA,17,517 258 3250,aaron.torres@healthcare.org
+PRO00030,Jeanette Sandoval,Emergency Department,General Practitioner,9964682697,Yes,CA,14,608 763 8092,jeanette.sandoval@healthcare.org
+PRO00031,Michelle Jackson,Emergency Department,General Practitioner,8503234187,Yes,CA,20,640 177 7004,
+PRO00032,Joseph Molina,Emergency Department,General Practitioner,4994094745,Yes,CA,18,656 969 0086,joseph.molina@healthcare.org
+PRO00033,Joseph Wall,Emergency Department,General Practitioner,1862624826,Yes,CA,14,628 764 1436,joseph.wall@healthcare.org
+PRO00034,Jennifer Browning,Emergency Department,General Practitioner,4216447776,Yes,CA,10,853 434 5679,jennifer.browning59@healthcare.org
+PRO00035,Lynn Martinez,Emergency Department,General Practitioner,1060929154,Yes,CA,2,797 891 0114,lynn.martinez@healthcare.org
+PRO00036,Tracy Turner,Emergency Department,General Practitioner,5014756477,Yes,CA,20,384 382 0533,tracy.turner@healthcare.org
+PRO00037,Paul Hood,Emergency Department,General Practitioner,4986737601,Yes,CA,17,402 371 9207,paul.hood@healthcare.org
+PRO00038,Alisha Doyle,Emergency Department,General Practitioner,3902495752,No,CA,5,226 985 8807,alisha.doyle32@healthcare.org
+PRO00039,Deborah Mcbride,Emergency Department,General Practitioner,3113975165,Yes,CA,1,239 092 1636,deborah.mcbride@healthcare.org
+PRO00040,Rebecca Cooper,Emergency Department,General Practitioner,3100376854,Yes,CA,13,215 620 4664,rebecca.cooper@healthcare.org
+PRO00041,Christopher Casey,Emergency Department,General Practitioner,5657691602,Yes,CA,8,404 541 2005,christopher.casey@healthcare.org
+PRO00042,John White,Emergency Department,General Practitioner,7258244378,Yes,NY,14,170 832 6505,john.white95@healthcare.org
+PRO00043,Carrie Schneider,Emergency Department,General Practitioner,7248329096,Yes,CA,13,352 342 7396,
+PRO00044,Scott Johnson,Emergency Department,General Practitioner,7148414305,Yes,NC,13,608 027 4012,scott.johnson@healthcare.org
+PRO00045,Carolyn Foster,Emergency Department,General Practitioner,1216344085,Yes,CA,8,,
+PRO00046,Angela Miller,Emergency Department,General Practitioner,4211686517,Yes,CA,6,198 004 8124,angela.miller@healthcare.org
+PRO00047,Christopher Cameron,Emergency Department,General Practitioner,9732666565,Yes,CA,5,006 291 0982,christopher.cameron@healthcare.org
+PRO00048,Karen Berry,Emergency Department,General Practitioner,5851657393,No,CA,2,479 069 4138,karen.berry@healthcare.org
+PRO00049,Amy Jones,Emergency Department,General Practitioner,5067298284,Yes,CA,20,670 484 5671,amy.jones@healthcare.org
+PRO00050,Jean Thompson,Emergency Department,General Practitioner,4931770774,Yes,CA,13,283 164 6106,jean.thompson@healthcare.org
+PRO00051,Anna Smith,Emergency Department,General Practitioner,9357766649,Yes,CA,34,076 395 2963,anna.smith@healthcare.org
+PRO00052,Mark Clements,Emergency Department,General Practitioner,6351051654,Yes,CA,18,564 906 5788,
+PRO00053,Angela Smith,Emergency Department,General Practitioner,8404598301,Yes,CA,40,486 985 6921,angela.smith98@healthcare.org
+PRO00054,Jason Foster,Emergency Department,General Practitioner,1037890822,Yes,CA,13,349 850 9880,jason.foster@healthcare.org
+PRO00055,Molly Lewis,Emergency Department,General Practitioner,2272723249,Yes,CA,5,982 267 3685,molly.lewis84@healthcare.org
+PRO00056,Christopher Ward,Emergency Department,General Practitioner,7967976166,Yes,CA,32,857 806 7815,christopher.ward@healthcare.org
+PRO00057,Kevin Martinez,Emergency Department,General Practitioner,2894494864,Yes,CA,11,292 489 7469,kevin.martinez@healthcare.org
+PRO00058,Colin Kirby,Emergency Department,General Practitioner,5188152669,Yes,CA,19,807 615 5521,colin.kirby@healthcare.org
+PRO00059,Sarah Wilson,Emergency Department,General Practitioner,4135323766,Yes,NV,1,369 987 8092,sarah.wilson@healthcare.org
+PRO00060,Mrs. Vanessa Hall MD,Emergency Department,General Practitioner,6606237996,Yes,CA,3,814 881 3187,mrs..md@healthcare.org
+PRO00061,Christopher Ford,Emergency Department,General Practitioner,2183596191,Yes,CA,15,894 232 7694,christopher.ford@healthcare.org
+PRO00062,Sharon Gibson,Emergency Department,General Practitioner,1276037103,Yes,CA,4,145 624 7753,sharon.gibson@healthcare.org
+PRO00063,Peter Glenn,Emergency Department,General Practitioner,2468823712,Yes,CA,7,083 787 6421,peter.glenn@healthcare.org
+PRO00064,Eric Crosby,Emergency Department,General Practitioner,7585475012,No,CA,7,078 030 6053,
+PRO00065,Amanda Pearson,Emergency Department,General Practitioner,2765645228,Yes,CA,8,699 183 7831,amanda.pearson@healthcare.org
+PRO00066,James Flores,Emergency Department,General Practitioner,7290402248,Yes,NC,21,957 832 8930,james.flores@healthcare.org
+PRO00067,Gordon Warner,Emergency Department,General Practitioner,2139524384,No,CA,8,055 614 2358,gordon.warner@healthcare.org
+PRO00068,Brenda Rogers,Emergency Department,General Practitioner,7036093968,Yes,LA,7,808 745 0855,brenda.rogers@healthcare.org
+PRO00069,John Alvarez,Emergency Department,General Practitioner,9971021386,Yes,CA,16,067 468 9142,john.alvarez@healthcare.org
+PRO00070,Gabriella Miller,Emergency Department,General Practitioner,8712332064,No,CA,4,593 143 5064,
+PRO00071,Robert Mckenzie,Emergency Department,General Practitioner,7071150910,Yes,CA,9,297 585 7050,
+PRO00072,Donald Smith,Internal Medicine,Internist,5726070430,Yes,MH,12,731 287 3826,donald.smith@healthcare.org
+PRO00073,Andrew Parker,Internal Medicine,Internist,2907337255,Yes,CA,19,500 819 5975,andrew.parker50@healthcare.org
+PRO00074,Holly Davis,Internal Medicine,Internist,1306769234,Yes,CA,3,665 914 9826,holly.davis@healthcare.org
+PRO00075,Blake Greer,Internal Medicine,Internist,5629568175,Yes,CA,22,336 246 6606,blake.greer93@healthcare.org
+PRO00076,Erik Boyer,Internal Medicine,Internist,9224727268,Yes,CA,10,059 982 9966,erik.boyer@healthcare.org
+PRO00077,Peter Gill MD,Internal Medicine,Internist,5251778539,No,NJ,12,850 076 2608,peter.md@healthcare.org
+PRO00078,Cassandra Johnston,Internal Medicine,Internist,9318921092,Yes,CA,14,190 420 6890,cassandra.johnston50@healthcare.org
+PRO00079,Rita Thompson,Internal Medicine,Internist,3299056248,Yes,CA,20,311 363 6570,rita.thompson@healthcare.org
+PRO00080,Patrick Smith,Internal Medicine,Internist,7957359284,Yes,AK,15,391 952 5451,patrick.smith@healthcare.org
+PRO00081,Susan Weber,Internal Medicine,Internist,4361410160,Yes,CA,13,324 672 3738,susan.weber@healthcare.org
+PRO00082,Elizabeth Johnson,Internal Medicine,Internist,2540321497,Yes,CA,6,902 322 1448,elizabeth.johnson@healthcare.org
+PRO00083,Lisa Doyle,Internal Medicine,Internist,3070758997,Yes,CA,39,024 286 3622,
+PRO00084,Sarah Henson,Internal Medicine,Internist,1935923923,Yes,CA,3,521 354 6796,sarah.henson@healthcare.org
+PRO00085,Angela Berry,Internal Medicine,Internist,1773961340,Yes,CA,13,350 061 0778,angela.berry@healthcare.org
+PRO00086,Nicole Norton,Internal Medicine,Internist,1283676751,Yes,CA,7,,nicole.norton@healthcare.org
+PRO00087,Jenna Short,Internal Medicine,Internist,5153784978,Yes,CA,20,854 390 0687,jenna.short@healthcare.org
+PRO00088,Frank Kerr,Internal Medicine,Internist,3829187090,Yes,CA,12,,
+PRO00089,Jessica Patton,Internal Medicine,Internist,4147237337,Yes,CA,16,709 758 4090,
+PRO00090,Amber Phillips,Internal Medicine,Internist,1335802060,Yes,CA,9,648 594 7154,amber.phillips@healthcare.org
+PRO00091,Mary Lopez,Internal Medicine,Internist,1381960770,Yes,CA,2,913 217 5998,mary.lopez@healthcare.org
+PRO00092,Meagan Herrera,Internal Medicine,Internist,6079310763,Yes,CA,10,210 836 1567,meagan.herrera@healthcare.org
+PRO00093,Raymond Chung,Internal Medicine,Internist,3550176052,Yes,CA,8,574 723 7096,raymond.chung@healthcare.org
+PRO00094,Spencer Franklin,Internal Medicine,Internist,8504215144,Yes,CA,7,219 161 7604,spencer.franklin@healthcare.org
+PRO00095,Debbie Barr,Internal Medicine,Internist,5812456682,No,CA,8,,
+PRO00096,Angela Daugherty,Internal Medicine,Internist,7779389372,Yes,CA,16,342 648 6477,angela.daugherty@healthcare.org
+PRO00097,Laura Clark,Internal Medicine,Internist,8149836019,Yes,CA,15,987 986 0249,laura.clark@healthcare.org
+PRO00098,Michael Burton,Internal Medicine,Internist,5384752800,Yes,MO,19,966 188 8359,michael.burton@healthcare.org
+PRO00099,Michael Bailey,Internal Medicine,Internist,9426452755,Yes,CA,13,600 001 4824,michael.bailey@healthcare.org
+PRO00100,Diamond Oconnor,Internal Medicine,Internist,8092907086,No,CA,8,486 914 8413,
+PRO00061,Christopher Ford,Emergency Department,General Practitioner,2183596191,Yes,CA,15,894 232 7694,christopher.ford@healthcare.org

@@ -1,0 +1,166 @@
+version: 2
+
+models:
+  - name: fact_encounter
+    description: "Fact table for patient encounters with aggregated metrics"
+    config:
+      materialized: incremental
+      unique_key: encounter_id
+    columns:
+      - name: encounter_key
+        description: "Surrogate key for encounter fact"
+        tests:
+          - unique
+          - not_null
+      - name: encounter_id
+        description: "Natural key - encounter identifier"
+        tests:
+          - unique
+          - not_null
+      - name: patient_key
+        description: "Foreign key to dim_patient"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_patient')
+              field: patient_key
+      - name: provider_key
+        description: "Foreign key to dim_provider"
+        tests:
+          - relationships:
+              to: ref('dim_provider')
+              field: provider_key
+      - name: visit_date
+        description: "Visit date"
+      - name: diagnosis_key
+        description: "Foreign key to dim_diagnosis"
+        tests:
+          - relationships:
+              to: ref('dim_diagnosis')
+              field: diagnosis_key
+      - name: visit_type
+        description: "Type of visit"
+      - name: status
+        description: "Encounter status"
+      - name: total_cost
+        description: "Total cost for the encounter"
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+  
+  - name: fact_billing
+    description: "Fact table for billing and claims with payment metrics"
+    config:
+      materialized: incremental
+      unique_key: billing_id
+    columns:
+      - name: billing_key
+        description: "Surrogate key for billing fact"
+        tests:
+          - unique
+          - not_null
+      - name: billing_id
+        description: "Natural key - billing identifier"
+        tests:
+          - unique
+          - not_null
+      - name: encounter_key
+        description: "Foreign key to fact_encounter"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fact_encounter')
+              field: encounter_key
+      - name: patient_key
+        description: "Foreign key to dim_patient"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_patient')
+              field: patient_key
+      - name: claim_billing_date
+        description: "Claim billing date"
+      - name: claim_status
+        description: "Status of the claim"
+        tests:
+          - accepted_values:
+              values: ['Paid', 'Pending', 'Denied', 'Partially Paid']
+      - name: billed_amount
+        description: "Total amount billed"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: paid_amount
+        description: "Amount paid by insurance"
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: payment_rate
+        description: "Payment rate as percentage (paid/billed * 100)"
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 100
+  
+  - name: fact_lab_test
+    description: "Fact table for laboratory tests and results"
+    config:
+      materialized: incremental
+      unique_key: lab_id
+    columns:
+      - name: lab_test_key
+        description: "Surrogate key for lab test fact"
+        tests:
+          - unique
+          - not_null
+      - name: lab_id
+        description: "Natural key - lab test identifier"
+        tests:
+          - unique
+          - not_null
+      - name: encounter_key
+        description: "Foreign key to fact_encounter"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fact_encounter')
+              field: encounter_key
+      - name: test_date
+        description: "Test date"
+      - name: status
+        description: "Status of the lab test"
+      - name: is_abnormal
+        description: "Flag indicating if test result is abnormal"
+  
+  - name: fact_denial
+    description: "Fact table for claim denials and appeals"
+    config:
+      materialized: incremental
+      unique_key: denial_id
+    columns:
+      - name: denial_key
+        description: "Surrogate key for denial fact"
+        tests:
+          - unique
+          - not_null
+      - name: denial_id
+        description: "Natural key - denial identifier"
+        tests:
+          - unique
+          - not_null
+      - name: billing_key
+        description: "Foreign key to fact_billing (nullable - some denials may not have billing records yet)"
+        tests:
+          - relationships:
+              to: ref('fact_billing')
+              field: billing_key
+      - name: denial_date
+        description: "Denial date"
+      - name: denied_amount
+        description: "Amount denied"
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: appeal_status
+        description: "Status of the appeal"

@@ -1,0 +1,390 @@
+# Healthcare ETL Pipeline Configuration
+# 
+# This file contains all configuration settings for the Bronze/Silver/Gold ETL pipeline.
+# Environment variables can be referenced using ${VAR_NAME} syntax.
+
+pipeline:
+  name: ${PIPELINE_NAME}
+  version: ${PIPELINE_VERSION}
+  description: "Healthcare ETL pipeline with medallion architecture"
+  
+# Bronze Layer Configuration
+bronze:
+  # Source and target paths
+  source_path: ${SOURCE_CSV_PATH}
+  target_path: ${BRONZE_DATA_PATH}
+  
+  # Expected CSV files to ingest
+  tables:
+    - patients
+    - encounters
+    - diagnoses
+    - procedures
+    - medications
+    - lab_tests
+    - claims_and_billing
+    - providers
+    - denials
+  
+  # File validation settings
+  validation:
+    check_file_existence: true
+    calculate_checksums: true
+    checksum_algorithm: md5
+  
+  # Metadata generation
+  metadata:
+    generate_file: true
+    filename: _metadata.json
+    include_row_counts: true
+    include_file_sizes: true
+    include_checksums: true
+
+# Silver Layer Configuration
+silver:
+  # Source and target paths
+  source_path: ${BRONZE_DATA_PATH}
+  target_path: ${SILVER_DATA_PATH}
+  
+  # Table configuration file
+  table_config_file: config/silver_table_config.yaml
+  
+  # Date format settings
+  date_formats:
+    source_format: "%d-%m-%Y"
+    target_format: "%Y-%m-%d"
+    handle_timestamps: true
+  
+  # Parquet settings
+  parquet:
+    compression: snappy
+    engine: pyarrow
+    write_index: false
+  
+  # Audit columns to add
+  audit_columns:
+    - load_timestamp
+    - source_file
+    - record_hash
+  
+  # Deduplication settings
+  deduplication:
+    enabled: true
+    keep: first  # Options: first, last, false
+  
+  # Transformation settings
+  transformations:
+    standardize_dates: true
+    convert_types: true
+    handle_missing_data: true
+    add_audit_columns: true
+
+# Gold Layer Configuration
+gold:
+  # Database connection
+  database:
+    host: ${POSTGRES_HOST}
+    port: ${POSTGRES_PORT}
+    database: ${POSTGRES_DB}
+    user: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    schema: public
+  
+  # Connection pool settings
+  connection_pool:
+    min_connections: 1
+    max_connections: 10
+    connection_timeout: 30
+  
+  # dbt settings
+  dbt:
+    project_dir: dbt_project
+    profiles_dir: dbt_project
+    target: dev
+    threads: 4
+  
+  # Incremental loading strategy
+  incremental:
+    strategy: merge
+    unique_key: auto  # Auto-detect from model
+  
+  # Table refresh settings
+  refresh:
+    staging_models: true
+    dimension_models: true
+    fact_models: true
+    run_tests: true
+
+# Data Quality Configuration
+data_quality:
+  # Great Expectations settings
+  great_expectations:
+    context_root_dir: great_expectations
+    checkpoint_dir: checkpoints
+    expectation_dir: expectations
+    validation_dir: uncommitted/validations
+  
+  # Validation checkpoints
+  checkpoints:
+    bronze_validation:
+      name: bronze_validation_checkpoint
+      enabled: true
+    silver_validation:
+      name: silver_validation_checkpoint
+      enabled: true
+    gold_validation:
+      name: gold_validation_checkpoint
+      enabled: false  # Not yet implemented
+  
+  # Failure handling
+  failure_handling:
+    fail_on_error: ${DATA_QUALITY_FAIL_ON_ERROR}
+    warning_threshold: ${DATA_QUALITY_WARNING_THRESHOLD}  # 5% failure rate
+    log_failures: true
+    generate_reports: true
+  
+  # Validation rules
+  validation_rules:
+    # Row count validation
+    row_count:
+      enabled: true
+      min_rows: 1
+      max_variance_percent: 20  # Alert if row count changes by >20%
+    
+    # Schema validation
+    schema:
+      enabled: true
+      check_column_names: true
+      check_column_types: true
+      check_column_order: false
+    
+    # Primary key validation
+    primary_keys:
+      enabled: true
+      check_uniqueness: true
+      check_not_null: true
+    
+    # Referential integrity
+    referential_integrity:
+      enabled: true
+      check_foreign_keys: true
+    
+    # Value range checks
+    value_ranges:
+      enabled: true
+      age_min: 0
+      age_max: 120
+      cost_min: 0
+      length_of_stay_max: 365
+    
+    # Date logic validation
+    date_logic:
+      enabled: true
+      check_date_sequences: true  # admission_date <= discharge_date
+    
+    # Pattern matching
+    patterns:
+      enabled: true
+      patient_id_pattern: "^PAT[0-9]{5}$"
+      encounter_id_pattern: "^ENC[0-9]{5}$"
+      provider_id_pattern: "^PRO[0-9]{5}$"
+
+# Airflow DAG Configuration
+airflow:
+  # DAG settings
+  dag:
+    dag_id: healthcare_etl_pipeline
+    description: "Hospital data ETL with Bronze/Silver/Gold layers"
+    schedule_interval: "0 2 * * *"  # Daily at 2:00 AM UTC
+    start_date: "2025-01-01"
+    catchup: false
+    max_active_runs: 1
+    tags:
+      - healthcare
+      - etl
+      - production
+  
+  # Default task arguments
+  default_args:
+    owner: data-engineering
+    depends_on_past: false
+    email_on_failure: true
+    email_on_retry: false
+    retries: 3
+    retry_delay_minutes: 5
+    retry_exponential_backoff: true
+    max_retry_delay_minutes: 30
+  
+  # Task timeout settings (in seconds)
+  task_timeouts:
+    bronze_ingestion: 300  # 5 minutes
+    silver_transformation: 600  # 10 minutes
+    dbt_run: 900  # 15 minutes
+    data_quality: 600  # 10 minutes
+    default: 1800  # 30 minutes
+  
+  # Email alerts
+  alerts:
+    email_recipients:
+      - ${ALERT_EMAIL}
+    slack_webhook: ${SLACK_WEBHOOK_URL}
+    alert_on_failure: true
+    alert_on_success: false
+    alert_on_retry: false
+
+# Logging Configuration
+logging:
+  # Log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+  level: INFO
+  
+  # Log format
+  format: json  # Options: json, text
+  
+  # Log file settings
+  file:
+    enabled: true
+    path: logs/pipeline.log
+    max_bytes: 10485760  # 10 MB
+    backup_count: 5
+    rotation: size  # Options: size, time
+  
+  # Console logging
+  console:
+    enabled: true
+    level: INFO
+  
+  # Structured logging fields
+  include_fields:
+    - timestamp
+    - level
+    - logger_name
+    - message
+    - dag_id
+    - task_id
+    - run_id
+    - metadata
+  
+  # Log retention
+  retention:
+    days: 30
+    compress_old_logs: true
+
+# Alerting Configuration
+alerting:
+  # Alert channels
+  channels:
+    email:
+      enabled: true
+      smtp_host: smtp.gmail.com
+      smtp_port: 587
+      smtp_user: ${ALERT_EMAIL}
+      smtp_password: ${SMTP_PASSWORD}
+      use_tls: true
+    
+    slack:
+      enabled: false
+      webhook_url: ${SLACK_WEBHOOK_URL}
+  
+  # Alert severity levels
+  severity_levels:
+    critical:
+      - pipeline_failure
+      - data_corruption
+      - database_connection_failure
+    warning:
+      - data_quality_failure
+      - execution_time_exceeded
+      - row_count_variance
+    info:
+      - pipeline_success
+      - validation_passed
+  
+  # Alert templates
+  templates:
+    pipeline_failure:
+      subject: "[CRITICAL] Healthcare ETL Pipeline Failed"
+      include_error_details: true
+      include_stack_trace: true
+    
+    data_quality_failure:
+      subject: "[WARNING] Data Quality Check Failed"
+      include_validation_results: true
+    
+    pipeline_success:
+      subject: "[INFO] Healthcare ETL Pipeline Completed Successfully"
+      include_summary: true
+
+# Performance Configuration
+performance:
+  # Benchmarks (in seconds)
+  benchmarks:
+    bronze_ingestion_max: 30
+    silver_transformation_per_table_max: 120
+    dbt_gold_layer_max: 300
+    end_to_end_max: 900  # 15 minutes
+  
+  # Monitoring
+  monitoring:
+    track_execution_time: true
+    track_row_counts: true
+    track_data_quality_scores: true
+    alert_on_slowdown: true
+    slowdown_threshold_percent: 50  # Alert if >50% slower
+  
+  # Optimization settings
+  optimization:
+    pandas_chunksize: 10000
+    parallel_processing: false  # Not implemented yet
+    cache_intermediate_results: false
+
+# Environment-Specific Overrides
+environments:
+  development:
+    logging:
+      level: DEBUG
+    data_quality:
+      failure_handling:
+        fail_on_error: false
+    airflow:
+      dag:
+        schedule_interval: null  # Manual trigger only
+  
+  staging:
+    logging:
+      level: INFO
+    airflow:
+      dag:
+        schedule_interval: "0 4 * * *"  # 4 AM UTC
+  
+  production:
+    logging:
+      level: WARNING
+    data_quality:
+      failure_handling:
+        fail_on_error: true
+    alerting:
+      channels:
+        email:
+          enabled: true
+        slack:
+          enabled: true
+
+# Feature Flags
+features:
+  enable_bronze_validation: true
+  enable_silver_validation: true
+  enable_gold_validation: false  # Not yet implemented
+  enable_incremental_loading: true
+  enable_scd_type2: true
+  enable_data_lineage: true
+  enable_performance_monitoring: true
+  enable_auto_recovery: false  # Not yet implemented
+
+# Default Values
+defaults:
+  run_date: null  # Use current date if not specified
+  compression: snappy
+  date_format: "%Y-%m-%d"
+  encoding: utf-8
+  decimal_places: 2
+  timeout_seconds: 1800

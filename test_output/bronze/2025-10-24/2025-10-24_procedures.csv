@@ -1,0 +1,102 @@
+procedure_id,encounter_id,procedure_code,procedure_description,procedure_date,provider_id,procedure_cost
+PROC00009,ENC000001,94010,"Spirometry, including graphic record",19-01-2025,PRO00345,512.98
+PROC00012,ENC000001,99213,"Outpatient visit, established patient",19-01-2025,PRO00345,829.74
+PROC00024,ENC000001,94664,Inhaler use evaluation,19-01-2025,PRO00345,628.8
+PROC00012,ENC000002,99213,"Outpatient visit, established patient",30-03-2025,PRO00023,1243.8
+PROC00114,ENC000003,72192,CT scan of pelvis without contrast,18-01-2025,PRO01197,1350.62
+PROC00115,ENC000003,52332,Cystoscopy with insertion of stent,18-01-2025,PRO01197,972.83
+PROC00113,ENC000003,52005,Cystoscopy with ureteral catheterization,18-01-2025,PRO01197,1075.2
+PROC00001,ENC000003,99284,"Emergency department visit, moderate severity",18-01-2025,PRO01197,1442.46
+PROC00001,ENC000004,99284,"Emergency department visit, moderate severity",21-03-2025,PRO00049,673.43
+PROC00003,ENC000004,71046,"Chest X-ray, 2 views",21-03-2025,PRO00049,471.84
+PROC00004,ENC000004,36415,Collection of venous blood by venipuncture,21-03-2025,PRO00049,1465.44
+PROC00017,ENC000005,99214,Office visit for chronic condition management,24-01-2025,PRO00594,1036.99
+PROC00003,ENC000006,71046,"Chest X-ray, 2 views",05-01-2025,PRO00068,1472.18
+PROC00002,ENC000006,93000,"Electrocardiogram, complete",05-01-2025,PRO00068,111.58
+PROC00004,ENC000006,36415,Collection of venous blood by venipuncture,05-01-2025,PRO00068,299.79
+PROC00001,ENC000006,99284,"Emergency department visit, moderate severity",05-01-2025,PRO00068,687.58
+PROC00004,ENC000007,36415,Collection of venous blood by venipuncture,10-02-2025,PRO00920,468.62
+PROC00035,ENC000007,59425,"Antepartum care, 4-6 visits",10-02-2025,PRO00920,462.83
+PROC00037,ENC000007,76801,"Ultrasound, pregnant uterus, first trimester",10-02-2025,PRO00920,478.82
+PROC00010,ENC000008,94640,Inhalation treatment for airway obstruction,14-01-2025,PRO00048,928.77
+PROC00012,ENC000009,99213,"Outpatient visit, established patient",15-02-2025,PRO00876,905.19
+PROC00095,ENC000010,99204,"Office consultation, new patient, moderate complexity",20-02-2025,PRO00764,662.98
+PROC00010,ENC000011,94640,Inhalation treatment for airway obstruction,13-03-2025,PRO00045,342.39
+PROC00002,ENC000012,93000,"Electrocardiogram, complete",03-03-2025,PRO01010,1171.37
+PROC00055,ENC000013,49521,Repair of recurrent inguinal hernia,25-02-2025,PRO00522,1263.62
+PROC00056,ENC000013,74176,"CT abdomen and pelvis, no contrast",25-02-2025,PRO00522,1173.69
+PROC00054,ENC000013,49507,"Repair of initial inguinal hernia, age 5+",25-02-2025,PRO00522,852.69
+PROC00012,ENC000014,99213,"Outpatient visit, established patient",28-02-2025,PRO00108,734.92
+PROC00059,ENC000014,82947,"Glucose; quantitative, blood",28-02-2025,PRO00108,1343.57
+PROC00019,ENC000014,80061,Lipid panel,28-02-2025,PRO00108,129.78
+PROC00006,ENC000015,70450,CT scan of head or brain without contrast,02-03-2025,PRO00067,1204.37
+PROC00002,ENC000016,93000,"Electrocardiogram, complete",29-01-2025,PRO00361,384.33
+PROC00008,ENC000017,96372,Therapeutic injection; subcutaneous or intramuscular,11-02-2025,PRO00069,387.76
+PROC00006,ENC000017,70450,CT scan of head or brain without contrast,11-02-2025,PRO00069,757.85
+PROC00018,ENC000018,93784,Ambulatory blood pressure monitoring,06-01-2025,PRO00237,1125.22
+PROC00017,ENC000018,99214,Office visit for chronic condition management,06-01-2025,PRO00237,400.23
+PROC00004,ENC000018,36415,Collection of venous blood by venipuncture,06-01-2025,PRO00237,497.55
+PROC00019,ENC000018,80061,Lipid panel,06-01-2025,PRO00237,764.85
+PROC00003,ENC000019,71046,"Chest X-ray, 2 views",23-02-2025,PRO00049,425.57
+PROC00072,ENC000020,95860,"Needle electromyography, one extremity",04-02-2025,PRO00395,971.76
+PROC00017,ENC000021,99214,Office visit for chronic condition management,21-01-2025,PRO01414,817.71
+PROC00018,ENC000022,93784,Ambulatory blood pressure monitoring,24-03-2025,PRO01047,862.93
+PROC00032,ENC000023,92552,"Pure tone audiometry (threshold), air only",05-01-2025,PRO01329,1202.53
+PROC00128,ENC000023,92587,Evoked otoacoustic emissions; limited evaluation,05-01-2025,PRO01329,1457.84
+PROC00017,ENC000023,99214,Office visit for chronic condition management,05-01-2025,PRO01329,1393.36
+PROC00061,ENC000024,81001,"Urinalysis, automated, with microscopy",28-02-2025,PRO00075,955.7
+PROC00019,ENC000024,80061,Lipid panel,28-02-2025,PRO00075,1113.83
+PROC00023,ENC000025,99212,"Office visit, problem-focused",19-02-2025,PRO00338,287.53
+PROC00053,ENC000026,74177,CT abdomen and pelvis with contrast,21-03-2025,PRO00535,127.55
+PROC00009,ENC000027,94010,"Spirometry, including graphic record",14-02-2025,PRO00063,239.59
+PROC00071,ENC000028,95907,"Nerve conduction studies, 1-2 studies",29-01-2025,PRO00403,1496.96
+PROC00017,ENC000028,99214,Office visit for chronic condition management,29-01-2025,PRO00403,436.28
+PROC00106,ENC000029,74261,"CT colonography, screening",12-02-2025,PRO01068,1100.42
+PROC00010,ENC000030,94640,Inhalation treatment for airway obstruction,24-03-2025,PRO00056,301.88
+PROC00111,ENC000031,52601,Transurethral resection of prostate,12-02-2025,PRO01184,311.43
+PROC00017,ENC000031,99214,Office visit for chronic condition management,12-02-2025,PRO01184,645.68
+PROC00110,ENC000031,51701,Insertion of bladder catheter,12-02-2025,PRO01184,458.06
+PROC00036,ENC000032,81000,"Urinalysis, non-automated, with microscopy",13-01-2025,PRO00867,348.44
+PROC00011,ENC000033,94760,Pulse oximetry,06-03-2025,PRO00046,359.73
+PROC00009,ENC000033,94010,"Spirometry, including graphic record",06-03-2025,PRO00046,119.58
+PROC00017,ENC000034,99214,Office visit for chronic condition management,09-01-2025,PRO00161,239.55
+PROC00006,ENC000035,70450,CT scan of head or brain without contrast,10-03-2025,PRO00028,527.67
+PROC00007,ENC000035,73610,"X-ray of skull, complete",10-03-2025,PRO00028,836.18
+PROC00008,ENC000035,96372,Therapeutic injection; subcutaneous or intramuscular,10-03-2025,PRO00028,238.9
+PROC00005,ENC000035,99285,"Emergency department visit, high severity",10-03-2025,PRO00028,634.08
+PROC00002,ENC000036,93000,"Electrocardiogram, complete",27-03-2025,PRO00061,864.62
+PROC00003,ENC000036,71046,"Chest X-ray, 2 views",27-03-2025,PRO00061,728.11
+PROC00008,ENC000037,96372,Therapeutic injection; subcutaneous or intramuscular,21-03-2025,PRO00203,1190.65
+PROC00008,ENC000038,96372,Therapeutic injection; subcutaneous or intramuscular,22-03-2025,PRO00152,1350.57
+PROC00027,ENC000038,87880,"Strep test, rapid antigen detection",22-03-2025,PRO00152,679.75
+PROC00003,ENC000039,71046,"Chest X-ray, 2 views",29-03-2025,PRO00005,375.23
+PROC00039,ENC000040,58670,"Laparoscopy, surgical; with fulguration of lesions",04-02-2025,PRO00870,750.78
+PROC00038,ENC000040,72195,"MRI pelvis, without contrast",04-02-2025,PRO00870,946.88
+PROC00040,ENC000040,76856,"Pelvic ultrasound, non-obstetric",04-02-2025,PRO00870,142.04
+PROC00017,ENC000040,99214,Office visit for chronic condition management,04-02-2025,PRO00870,234.09
+PROC00082,ENC000041,82272,Fecal occult blood test,21-01-2025,PRO00620,1437.44
+PROC00012,ENC000042,99213,"Outpatient visit, established patient",15-02-2025,PRO00904,402.66
+PROC00042,ENC000042,58100,"Endometrial biopsy, without dilation and curettage",15-02-2025,PRO00904,746.07
+PROC00043,ENC000042,82670,Estradiol (E2) lab test,15-02-2025,PRO00904,365.31
+PROC00041,ENC000042,76830,Transvaginal pelvic ultrasound,15-02-2025,PRO00904,1190.17
+PROC00018,ENC000043,93784,Ambulatory blood pressure monitoring,22-02-2025,PRO00226,230.93
+PROC00019,ENC000043,80061,Lipid panel,22-02-2025,PRO00226,385.87
+PROC00017,ENC000043,99214,Office visit for chronic condition management,22-02-2025,PRO00226,1238.2
+PROC00004,ENC000043,36415,Collection of venous blood by venipuncture,22-02-2025,PRO00226,892.92
+PROC00039,ENC000044,58670,"Laparoscopy, surgical; with fulguration of lesions",07-01-2025,PRO00859,793.86
+PROC00112,ENC000045,72196,MRI pelvis with contrast,19-01-2025,PRO01174,1225.97
+PROC00012,ENC000046,99213,"Outpatient visit, established patient",20-02-2025,PRO01299,1140.87
+PROC00090,ENC000047,80048,Basic metabolic panel,30-01-2025,PRO01082,897.27
+PROC00115,ENC000048,52332,Cystoscopy with insertion of stent,04-01-2025,PRO01204,736.7
+PROC00001,ENC000048,99284,"Emergency department visit, moderate severity",04-01-2025,PRO01204,528.95
+PROC00114,ENC000048,72192,CT scan of pelvis without contrast,04-01-2025,PRO01204,669.89
+PROC00113,ENC000048,52005,Cystoscopy with ureteral catheterization,04-01-2025,PRO01204,1476.55
+PROC00039,ENC000049,58670,"Laparoscopy, surgical; with fulguration of lesions",08-02-2025,PRO00901,510.39
+PROC00005,ENC000050,99285,"Emergency department visit, high severity",15-01-2025,PRO00275,301.91
+PROC00044,ENC000051,90834,"Psychotherapy, 45 minutes with patient",07-01-2025,PRO00412,579.25
+PROC00136,ENC000052,99203,"Office or outpatient visit, new patient",12-03-2025,PRO00960,1157.46
+PROC00040,ENC000053,76856,"Pelvic ultrasound, non-obstetric",13-02-2025,PRO00892,916.68
+PROC00037,ENC000054,76801,"Ultrasound, pregnant uterus, first trimester",16-01-2025,PRO00854,626.16
+PROC00035,ENC000054,59425,"Antepartum care, 4-6 visits",16-01-2025,PRO00854,131.65
+PROC00036,ENC000054,81000,"Urinalysis, non-automated, with microscopy",16-01-2025,PRO00854,1044.16
+PROC00017,ENC000018,99214,Office visit for chronic condition management,06-01-2025,PRO00237,400.23

@@ -1,0 +1,87 @@
+{
+  "alert_type": "DATA_QUALITY_FAILURE",
+  "severity": "CRITICAL",
+  "checkpoint": "silver_validation_checkpoint",
+  "timestamp": "2025-10-24T22:50:53.423369",
+  "success_rate": 55.55555555555556,
+  "failed_validations": 4,
+  "details": [
+    {
+      "suite": "silver_encounters_suite",
+      "failed_expectations": [
+        {
+          "expectation_type": "expect_column_values_to_match_regex",
+          "kwargs": {
+            "column": "provider_id",
+            "regex": "^PRO\\d{6}$",
+            "batch_id": "9e40a0de0dde1c8101e8d79ca9d94b0a"
+          },
+          "result": {
+            "element_count": 70000,
+            "unexpected_count": 70000,
+            "unexpected_percent": 100.0,
+            "observed_value": null
+          }
+        }
+      ]
+    },
+    {
+      "suite": "silver_medications_suite",
+      "failed_expectations": [
+        {
+          "expectation_type": "expect_column_values_to_be_between",
+          "kwargs": {
+            "column": "medication_cost",
+            "min_value": 0,
+            "max_value": null,
+            "mostly": 0.95,
+            "batch_id": "3126b5e0c13938fc8f0a674d05537c66"
+          },
+          "result": {
+            "element_count": null,
+            "unexpected_count": null,
+            "unexpected_percent": null,
+            "observed_value": null
+          }
+        }
+      ]
+    },
+    {
+      "suite": "silver_providers_suite",
+      "failed_expectations": [
+        {
+          "expectation_type": "expect_column_values_to_match_regex",
+          "kwargs": {
+            "column": "provider_id",
+            "regex": "^PRO\\d{6}$",
+            "batch_id": "c269bec4106d6f446885ba3df8ad0f69"
+          },
+          "result": {
+            "element_count": 1491,
+            "unexpected_count": 1491,
+            "unexpected_percent": 100.0,
+            "observed_value": null
+          }
+        }
+      ]
+    },
+    {
+      "suite": "silver_denials_suite",
+      "failed_expectations": [
+        {
+          "expectation_type": "expect_column_values_to_not_be_null",
+          "kwargs": {
+            "column": "billing_id",
+            "batch_id": "ae7d07214b9f64c9383ad37e115f4280"
+          },
+          "result": {
+            "element_count": null,
+            "unexpected_count": null,
+            "unexpected_percent": null,
+            "observed_value": null
+          }
+        }
+      ]
+    }
+  ]
+}

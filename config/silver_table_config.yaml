@@ -1,0 +1,287 @@
+# Silver Layer Table Transformation Configuration
+#
+# This file defines transformation rules for each table in the healthcare dataset.
+# Each table configuration includes:
+# - primary_keys: Columns that uniquely identify a record
+# - date_columns: Columns containing dates to be standardized
+# - type_conversions: Data type conversions to apply
+# - missing_data: Strategies for handling missing values
+
+patients:
+  primary_keys:
+    - patient_id
+  
+  date_columns:
+    - dob
+    - registration_date
+  
+  type_conversions:
+    patient_id: string
+    first_name: string
+    last_name: string
+    age: integer
+    gender: string
+    ethnicity: string
+    insurance_type: string
+    marital_status: string
+    address: string
+    city: string
+    state: string
+    zip: string
+    phone: string
+    email: string
+  
+  missing_data:
+    phone:
+      strategy: fill
+      value: NOT_PROVIDED
+    email:
+      strategy: fill
+      value: NOT_PROVIDED
+    address:
+      strategy: fill
+      value: UNKNOWN
+    marital_status:
+      strategy: fill
+      value: UNKNOWN
+
+encounters:
+  primary_keys:
+    - encounter_id
+  
+  date_columns:
+    - visit_date
+    - discharge_date
+  
+  type_conversions:
+    encounter_id: string
+    patient_id: string
+    provider_id: string
+    visit_type: string
+    department: string
+    reason_for_visit: string
+    diagnosis_code: string
+    admission_type: string
+    length_of_stay: integer
+    status: string
+    readmitted_flag: string
+  
+  missing_data:
+    admission_type:
+      strategy: fill
+      value: UNKNOWN
+    discharge_date:
+      strategy: keep_null
+    length_of_stay:
+      strategy: keep_null
+    reason_for_visit:
+      strategy: fill
+      value: UNKNOWN
+
+diagnoses:
+  primary_keys:
+    - diagnosis_id
+  
+  date_columns: []
+  
+  type_conversions:
+    diagnosis_id: string
+    encounter_id: string
+    diagnosis_code: string
+    diagnosis_description: string
+    primary_flag: string
+    chronic_flag: string
+  
+  missing_data:
+    diagnosis_description:
+      strategy: fill
+      value: UNKNOWN
+    primary_flag:
+      strategy: fill
+      value: No
+    chronic_flag:
+      strategy: fill
+      value: No
+
+procedures:
+  primary_keys:
+    - procedure_id
+  
+  date_columns:
+    - procedure_date
+  
+  type_conversions:
+    procedure_id: string
+    encounter_id: string
+    procedure_code: string
+    procedure_description: string
+    provider_id: string
+    procedure_cost: float
+  
+  missing_data:
+    procedure_description:
+      strategy: fill
+      value: UNKNOWN
+    procedure_cost:
+      strategy: keep_null
+
+medications:
+  primary_keys:
+    - medication_id
+  
+  date_columns:
+    - prescribed_date
+  
+  type_conversions:
+    medication_id: string
+    encounter_id: string
+    drug_name: string
+    dosage: string
+    route: string
+    frequency: string
+    duration: string
+    prescriber_id: string
+    cost: float
+  
+  missing_data:
+    dosage:
+      strategy: fill
+      value: UNKNOWN
+    route:
+      strategy: fill
+      value: UNKNOWN
+    frequency:
+      strategy: fill
+      value: UNKNOWN
+    duration:
+      strategy: fill
+      value: UNKNOWN
+    cost:
+      strategy: keep_null
+
+lab_tests:
+  primary_keys:
+    - lab_id
+  
+  date_columns:
+    - test_date
+  
+  type_conversions:
+    lab_id: string
+    encounter_id: string
+    test_name: string
+    test_code: string
+    specimen_type: string
+    test_result: string
+    units: string
+    normal_range: string
+    status: string
+  
+  missing_data:
+    test_result:
+      strategy: fill
+      value: PENDING
+    units:
+      strategy: fill
+      value: UNKNOWN
+    normal_range:
+      strategy: fill
+      value: UNKNOWN
+    status:
+      strategy: fill
+      value: UNKNOWN
+
+claims_and_billing:
+  primary_keys:
+    - billing_id
+  
+  date_columns:
+    - claim_billing_date
+  
+  type_conversions:
+    billing_id: string
+    patient_id: string
+    encounter_id: string
+    insurance_provider: string
+    payment_method: string
+    claim_id: string
+    billed_amount: float
+    paid_amount: float
+    claim_status: string
+    denial_reason: string
+  
+  missing_data:
+    payment_method:
+      strategy: fill
+      value: UNKNOWN
+    paid_amount:
+      strategy: keep_null
+    denial_reason:
+      strategy: fill
+      value: NONE
+
+providers:
+  primary_keys:
+    - provider_id
+  
+  date_columns: []
+  
+  type_conversions:
+    provider_id: string
+    name: string
+    department: string
+    specialty: string
+    npi: string
+    inhouse: string
+    location: string
+    years_experience: integer
+    contact_info: string
+    email: string
+  
+  missing_data:
+    contact_info:
+      strategy: fill
+      value: NOT_PROVIDED
+    email:
+      strategy: fill
+      value: NOT_PROVIDED
+    npi:
+      strategy: fill
+      value: UNKNOWN
+    location:
+      strategy: fill
+      value: UNKNOWN
+
+denials:
+  primary_keys:
+    - denial_id
+  
+  date_columns:
+    - denial_date
+    - appeal_resolution_date
+  
+  type_conversions:
+    claim_id: string
+    denial_id: string
+    denial_reason_code: string
+    denial_reason_description: string
+    denied_amount: float
+    appeal_filed: string
+    appeal_status: string
+    final_outcome: string
+  
+  missing_data:
+    denial_reason_description:
+      strategy: fill
+      value: UNKNOWN
+    appeal_filed:
+      strategy: fill
+      value: No
+    appeal_status:
+      strategy: fill
+      value: NONE
+    appeal_resolution_date:
+      strategy: keep_null
+    final_outcome:
+      strategy: fill
+      value: PENDING

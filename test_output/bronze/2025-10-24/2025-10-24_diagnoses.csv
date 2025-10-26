@@ -1,0 +1,102 @@
+diagnosis_id,encounter_id,diagnosis_code,diagnosis_description,primary_flag,chronic_flag
+DIA0024,ENC000001,J45.909,"Unspecified asthma, uncomplicated",True,True
+DIA0041,ENC000002,R06.02,Shortness of breath,True,True
+DIA0036,ENC000003,N20.0,Kidney stone,True,True
+DIA0042,ENC000004,R07.9,"Chest pain, unspecified",True,False
+DIA0028,ENC000005,K58.9,Irritable bowel syndrome without diarrhea,True,True
+DIA0042,ENC000006,R07.9,"Chest pain, unspecified",True,False
+DIA0062,ENC000007,Z34.80,"Encounter for supervision of other normal pregnancy, unspecified trimester",True,False
+DIA0041,ENC000008,R06.02,Shortness of breath,True,True
+DIA0039,ENC000009,N92.6,"Irregular menstruation, unspecified",True,True
+DIA0003,ENC000010,C34.90,Malignant neoplasm of unspecified part of unspecified bronchus or lung,True,True
+DIA0041,ENC000011,R06.02,Shortness of breath,True,True
+DIA0054,ENC000012,Z01.810,Encounter for preprocedural cardiovascular examination,True,False
+DIA0027,ENC000013,K40.20,"Bilateral inguinal hernia, without obstruction or gangrene, not specified as recurrent",True,False
+DIA0005,ENC000014,E11.9,Type 2 diabetes mellitus without complications,True,True
+DIA0050,ENC000015,S09.90XA,"Unspecified injury of head, initial encounter",True,False
+DIA0009,ENC000016,G40.909,"Epilepsy, unspecified, not intractable, without status epilepticus",True,True
+DIA0050,ENC000017,S09.90XA,"Unspecified injury of head, initial encounter",True,False
+DIA0018,ENC000018,I15.9,"Secondary hypertension, unspecified",True,True
+DIA0042,ENC000019,R07.9,"Chest pain, unspecified",True,False
+DIA0012,ENC000020,G62.9,"Polyneuropathy, unspecified",True,True
+DIA0002,ENC000021,B20,HIV disease,True,True
+DIA0061,ENC000022,Z13.850,Encounter for screening for cardiovascular disorders,True,False
+DIA0015,ENC000023,H91.90,"Hearing loss, unspecified",True,False
+DIA0017,ENC000024,I10,Essential (primary) hypertension,True,True
+DIA0040,ENC000025,R05,Cough,True,False
+DIA0029,ENC000026,K82.9,"Disease of gallbladder, unspecified",True,True
+DIA0041,ENC000027,R06.02,Shortness of breath,True,True
+DIA0012,ENC000028,G62.9,"Polyneuropathy, unspecified",True,True
+DIA0060,ENC000029,Z12.11,Encounter for screening for malignant neoplasm of colon,True,False
+DIA0041,ENC000030,R06.02,Shortness of breath,True,True
+DIA0038,ENC000031,N40.0,Enlarged prostate without lower urinary tract symptoms,True,True
+DIA0062,ENC000032,Z34.80,"Encounter for supervision of other normal pregnancy, unspecified trimester",True,False
+DIA0041,ENC000033,R06.02,Shortness of breath,True,True
+DIA0034,ENC000034,M54.5,Low back pain,True,True
+DIA0050,ENC000035,S09.90XA,"Unspecified injury of head, initial encounter",True,False
+DIA0042,ENC000036,R07.9,"Chest pain, unspecified",True,False
+DIA0022,ENC000037,J06.9,"Acute upper respiratory infection, unspecified",True,False
+DIA0022,ENC000038,J06.9,"Acute upper respiratory infection, unspecified",True,False
+DIA0042,ENC000039,R07.9,"Chest pain, unspecified",True,False
+DIA0043,ENC000040,R10.2,Pelvic and perineal pain,True,False
+DIA0028,ENC000041,K58.9,Irritable bowel syndrome without diarrhea,True,True
+DIA0039,ENC000042,N92.6,"Irregular menstruation, unspecified",True,True
+DIA0018,ENC000043,I15.9,"Secondary hypertension, unspecified",True,True
+DIA0043,ENC000044,R10.2,Pelvic and perineal pain,True,False
+DIA0038,ENC000045,N40.0,Enlarged prostate without lower urinary tract symptoms,True,True
+DIA0021,ENC000046,J01.90,"Acute sinusitis, unspecified",True,False
+DIA0049,ENC000047,R79.9,"Abnormal finding of blood chemistry, unspecified",True,True
+DIA0036,ENC000048,N20.0,Kidney stone,True,True
+DIA0043,ENC000049,R10.2,Pelvic and perineal pain,True,False
+DIA0019,ENC000050,I20.9,"Angina pectoris, unspecified",True,True
+DIA0010,ENC000051,G43.909,"Migraine, unspecified, not intractable, without status migrainosus",True,True
+DIA0058,ENC000052,Z01.89,Encounter for other specified special examinations,True,False
+DIA0043,ENC000053,R10.2,Pelvic and perineal pain,True,False
+DIA0062,ENC000054,Z34.80,"Encounter for supervision of other normal pregnancy, unspecified trimester",True,False
+DIA0011,ENC000055,G47.00,"Insomnia, unspecified",True,True
+DIA0060,ENC000056,Z12.11,Encounter for screening for malignant neoplasm of colon,True,False
+DIA0004,ENC000057,C50.919,Malignant neoplasm of unspecified site of unspecified female breast,True,True
+DIA0056,ENC000058,Z01.812,Encounter for preprocedural laboratory examination,True,False
+DIA0050,ENC000059,S09.90XA,"Unspecified injury of head, initial encounter",True,False
+DIA0050,ENC000060,S09.90XA,"Unspecified injury of head, initial encounter",True,False
+DIA0003,ENC000061,C34.90,Malignant neoplasm of unspecified part of unspecified bronchus or lung,True,True
+DIA0058,ENC000062,Z01.89,Encounter for other specified special examinations,True,False
+DIA0055,ENC000063,Z01.811,Encounter for preprocedural respiratory examination,True,False
+DIA0043,ENC000064,R10.2,Pelvic and perineal pain,True,False
+DIA0047,ENC000065,R50.9,"Fever, unspecified",True,False
+DIA0060,ENC000066,Z12.11,Encounter for screening for malignant neoplasm of colon,True,False
+DIA0003,ENC000067,C34.90,Malignant neoplasm of unspecified part of unspecified bronchus or lung,True,True
+DIA0048,ENC000068,R53.83,Other fatigue,True,False
+DIA0014,ENC000069,H66.90,"Otitis media, unspecified, unspecified ear",True,False
+DIA0043,ENC000070,R10.2,Pelvic and perineal pain,True,False
+DIA0035,ENC000071,N18.9,"Chronic kidney disease, unspecified",True,True
+DIA0035,ENC000072,N18.9,"Chronic kidney disease, unspecified",True,True
+DIA0012,ENC000073,G62.9,"Polyneuropathy, unspecified",True,True
+DIA0050,ENC000074,S09.90XA,"Unspecified injury of head, initial encounter",True,False
+DIA0057,ENC000075,Z01.818,Encounter for other preprocedural examination,True,False
+DIA0062,ENC000076,Z34.80,"Encounter for supervision of other normal pregnancy, unspecified trimester",True,False
+DIA0031,ENC000077,L70.9,"Acne, unspecified",True,False
+DIA0002,ENC000078,B20,HIV disease,True,True
+DIA0025,ENC000079,K21.9,Gastro-esophageal reflux disease without esophagitis,True,True
+DIA0027,ENC000080,K40.20,"Bilateral inguinal hernia, without obstruction or gangrene, not specified as recurrent",True,False
+DIA0049,ENC000081,R79.9,"Abnormal finding of blood chemistry, unspecified",True,True
+DIA0010,ENC000082,G43.909,"Migraine, unspecified, not intractable, without status migrainosus",True,True
+DIA0013,ENC000083,G89.29,Other chronic pain,True,True
+DIA0038,ENC000084,N40.0,Enlarged prostate without lower urinary tract symptoms,True,True
+DIA0040,ENC000085,R05,Cough,True,False
+DIA0014,ENC000086,H66.90,"Otitis media, unspecified, unspecified ear",True,False
+DIA0042,ENC000087,R07.9,"Chest pain, unspecified",True,False
+DIA0036,ENC000088,N20.0,Kidney stone,True,True
+DIA0045,ENC000089,R21,Rash and other nonspecific skin eruption,True,False
+DIA0039,ENC000090,N92.6,"Irregular menstruation, unspecified",True,True
+DIA0036,ENC000091,N20.0,Kidney stone,True,True
+DIA0043,ENC000092,R10.2,Pelvic and perineal pain,True,False
+DIA0010,ENC000093,G43.909,"Migraine, unspecified, not intractable, without status migrainosus",True,True
+DIA0004,ENC000094,C50.919,Malignant neoplasm of unspecified site of unspecified female breast,True,True
+DIA0026,ENC000095,K35.80,Unspecified acute appendicitis,True,False
+DIA0010,ENC000096,G43.909,"Migraine, unspecified, not intractable, without status migrainosus",True,True
+DIA0023,ENC000097,J44.9,"Chronic obstructive pulmonary disease, unspecified",True,True
+DIA0004,ENC000098,C50.919,Malignant neoplasm of unspecified site of unspecified female breast,True,True
+DIA0035,ENC000099,N18.9,"Chronic kidney disease, unspecified",True,True
+DIA0052,ENC000100,Z00.00,Encounter for general adult medical examination without abnormal findings,True,False
+DIA0038,ENC000031,N40.0,Enlarged prostate without lower urinary tract symptoms,True,True
