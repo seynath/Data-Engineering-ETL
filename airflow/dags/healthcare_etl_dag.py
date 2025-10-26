@@ -416,6 +416,14 @@ with dag:
     # Create dbt task group
     with TaskGroup('dbt_gold_layer', tooltip='dbt transformations for Gold layer') as dbt_group:
         
+        # Install dbt dependencies first
+        dbt_deps = BashOperator(
+            task_id='dbt_deps',
+            bash_command=f'cd {DBT_PROJECT_DIR} && dbt deps --profiles-dir {DBT_PROFILES_DIR}',
+            execution_timeout=timedelta(minutes=5),  # Install dependencies
+            dag=dag
+        )
+        
         dbt_run_staging = BashOperator(
             task_id='dbt_run_staging',
             bash_command=f'cd {DBT_PROJECT_DIR} && dbt run --profiles-dir {DBT_PROFILES_DIR} --select staging.*',
@@ -452,7 +460,7 @@ with dag:
         )
         
         # Set dbt task dependencies
-        dbt_run_staging >> dbt_test_staging >> dbt_run_dimensions >> dbt_run_facts >> dbt_test_gold
+        dbt_deps >> dbt_run_staging >> dbt_test_staging >> dbt_run_dimensions >> dbt_run_facts >> dbt_test_gold
     
     # ============================================================================
     # DATA QUALITY AND REPORTING TASKS
