@@ -366,18 +366,25 @@ with dag:
             print("  Note: Validation is optional and will not block the pipeline")
             print("  The pipeline will continue to load data to the warehouse")
             
-            # Push empty result to XCom
+            # Push empty result to XCom with statistics placeholder
+            error_result = {
+                'success': False, 
+                'error': str(e), 
+                'skipped': True,
+                'statistics': {
+                    'evaluated_validations': 0,
+                    'successful_validations': 0,
+                    'unsuccessful_validations': 0,
+                    'success_percent': 0.0
+                }
+            }
             context['task_instance'].xcom_push(
                 key='silver_validation_result',
-                value={'success': False, 'error': str(e), 'skipped': True}
+                value=error_result
             )
             
             # Return success to not block the pipeline
-            return {'success': False, 'error': str(e), 'skipped': True}
-            
-        except Exception as e:
-            print(f"✗ Silver validation error: {str(e)}")
-            raise
+            return error_result
     
     
     # Create Silver transformation task group

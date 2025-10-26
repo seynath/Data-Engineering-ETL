@@ -365,9 +365,16 @@ class DataQualityValidator:
         }
         
         # Calculate aggregate statistics
-        total_evaluated = sum(r['statistics']['evaluated_validations'] for r in validation_results)
-        total_successful = sum(r['statistics']['successful_validations'] for r in validation_results)
-        total_failed = sum(r['statistics']['unsuccessful_validations'] for r in validation_results)
+        # Safely handle cases where statistics may not be present
+        total_evaluated = sum(
+            r.get('statistics', {}).get('evaluated_validations', 0) for r in validation_results
+        )
+        total_successful = sum(
+            r.get('statistics', {}).get('successful_validations', 0) for r in validation_results
+        )
+        total_failed = sum(
+            r.get('statistics', {}).get('unsuccessful_validations', 0) for r in validation_results
+        )
         
         report['aggregate_statistics'] = {
             'total_evaluated_validations': total_evaluated,
