@@ -148,7 +148,7 @@ services:
       - healthcare-etl-network
 
   superset:
-    image: apache/superset:3.0.0
+    image: apache/superset:latest
     container_name: healthcare-etl-superset
     environment:
       SUPERSET_SECRET_KEY: ${SUPERSET_SECRET_KEY:-superset_secret_key_change_me}
