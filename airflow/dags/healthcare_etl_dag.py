@@ -460,12 +460,21 @@ with dag:
                 # Read Parquet file
                 df = pd.read_parquet(parquet_file)
                 
-                # Load to warehouse (replace existing data)
+                # Try to truncate table first (if it exists)
+                # This allows us to replace data without breaking dbt dependencies
+                try:
+                    with engine.begin() as conn:
+                        conn.execute(text(f"TRUNCATE TABLE silver.{table_name}"))
+                except Exception:
+                    # Table doesn't exist yet, will be created by to_sql
+                    pass
+                
+                # Load to warehouse
                 df.to_sql(
                     table_name,
                     engine,
                     schema='silver',
-                    if_exists='replace',
+                    if_exists='append',
                     index=False,
                     method='multi'
                 )
