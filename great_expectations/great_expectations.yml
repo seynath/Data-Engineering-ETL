@@ -21,14 +21,10 @@ datasources:
     execution_engine:
       class_name: PandasExecutionEngine
     data_connectors:
-      default_inferred_data_connector:
-        class_name: InferredAssetFilesystemDataConnector
-        base_directory: ../data/silver/
-        glob_directive: "**/*.parquet"
-        default_regex:
-          group_names:
-            - data_asset_name
-          pattern: (.*)\.parquet
+      default_runtime_data_connector:
+        class_name: RuntimeDataConnector
+        batch_identifiers:
+          - default_identifier_name
 
 # Stores configuration
 stores:

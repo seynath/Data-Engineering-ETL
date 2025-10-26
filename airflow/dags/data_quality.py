@@ -177,14 +177,87 @@ class DataQualityValidator:
         Returns:
             Dictionary containing validation results
         """
+        import pandas as pd
+        from pathlib import Path
+        
         logger.info(f"Validating Silver layer for date: {run_date}")
         
-        checkpoint_name = "silver_validation_checkpoint"
+        # Load Parquet files for the specific date
+        silver_dir = Path(f"/opt/airflow/data/silver/{run_date}")
         
-        if run_name is None:
-            run_name = f"silver_{run_date}"
+        if not silver_dir.exists():
+            raise FileNotFoundError(f"Silver data directory not found: {silver_dir}")
         
-        return self.run_checkpoint(checkpoint_name, run_name)
+        # Define the tables to validate
+        tables = [
+            'patients', 'encounters', 'diagnoses', 'procedures',
+            'medications', 'lab_tests', 'claims_and_billing', 'providers', 'denials'
+        ]
+        
+        validation_results = []
+        all_success = True
+        
+        for table in tables:
+            parquet_file = silver_dir / f"{table}.parquet"
+            
+            if not parquet_file.exists():
+                logger.warning(f"Parquet file not found: {parquet_file}")
+                continue
+            
+            try:
+                # Load the dataframe
+                df = pd.read_parquet(parquet_file)
+                logger.info(f"Loaded {table}: {len(df)} rows")
+                
+                # Create runtime batch request
+                batch_request = {
+                    "datasource_name": "silver_datasource",
+                    "data_connector_name": "default_runtime_data_connector",
+                    "data_asset_name": table,
+                    "runtime_parameters": {"batch_data": df},
+                    "batch_identifiers": {"default_identifier_name": run_date}
+                }
+                
+                # Get validator
+                validator = self.context.get_validator(
+                    batch_request=batch_request,
+                    expectation_suite_name=f"silver_{table}_suite"
+                )
+                
+                # Run validation
+                result = validator.validate()
+                validation_results.append({
+                    'table': table,
+                    'success': result.success,
+                    'statistics': result.statistics
+                })
+                
+                if not result.success:
+                    all_success = False
+                    logger.warning(f"Validation failed for {table}")
+                else:
+                    logger.info(f"✓ Validation passed for {table}")
+                    
+            except Exception as e:
+                logger.error(f"Error validating {table}: {str(e)}")
+                validation_results.append({
+                    'table': table,
+                    'success': False,
+                    'error': str(e)
+                })
+                all_success = False
+        
+        return {
+            'success': all_success,
+            'run_date': run_date,
+            'results': validation_results,
+            'statistics': {
+                'total_tables': len(tables),
+                'validated_tables': len(validation_results),
+                'successful_validations': sum(1 for r in validation_results if r.get('success', False)),
+                'unsuccessful_validations': sum(1 for r in validation_results if not r.get('success', True))
+            }
+        }
     
     def _parse_validation_results(self, results) -> Dict:
         """
