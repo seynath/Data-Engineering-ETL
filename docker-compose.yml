@@ -131,7 +131,8 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-healthcare_warehouse}
     volumes:
       - warehouse-db-volume:/var/lib/postgresql/data
-      - ./init-scripts:/docker-entrypoint-initdb.d
+      - ./init-scripts/create_dimension_tables.sql:/docker-entrypoint-initdb.d/01_create_dimension_tables.sql
+      - ./init-scripts/create_fact_tables.sql:/docker-entrypoint-initdb.d/02_create_fact_tables.sql
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER:-etl_user}", "-d", "${POSTGRES_DB:-healthcare_warehouse}"]
       interval: 10s
