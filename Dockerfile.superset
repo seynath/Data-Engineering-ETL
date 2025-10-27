@@ -1,5 +1,5 @@
 FROM apache/superset:latest
 
-# Install PostgreSQL driver
-# Using pip3 to ensure it installs in the correct Python environment
-RUN pip3 install --no-cache-dir psycopg2-binary
+# Install PostgreSQL driver into the Superset virtual environment
+# The Superset image uses /app/.venv as the virtual environment
+RUN /app/.venv/bin/pip install --no-cache-dir psycopg2-binary
